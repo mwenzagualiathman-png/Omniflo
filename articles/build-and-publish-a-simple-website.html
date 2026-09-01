@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A beginner-friendly guide to building and publishing a simple website.">
+<title>How to Build and Publish a Simple Website | OmniFlo</title>
+<style>
+:root{--bg:#090b10;--panel:#10141c;--text:#f4f5f7;--muted:#a9afbb;--line:#252b36;--accent:#d7ff4f;--max:1160px;--reading:760px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.75}
+a{text-decoration:none;color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(9,11,16,.95);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;font-weight:800;letter-spacing:5px}
+.mark{width:42px;height:42px;border:1px solid #72834d;border-radius:50%;display:grid;place-items:center;color:var(--accent);letter-spacing:0}
+.home{font-size:14px;color:var(--muted);border:1px solid var(--line);padding:10px 16px;border-radius:4px}
+.hero{padding:90px 0 65px;background:radial-gradient(circle at 85% 0%,#1b270d 0,transparent 32%);border-bottom:1px solid var(--line)}
+.reading{width:min(var(--reading),100%);margin:auto}.kicker{color:var(--accent);font-size:12px;letter-spacing:3px;font-weight:bold;text-transform:uppercase}
+h1{font-size:clamp(42px,7vw,76px);line-height:1.02;letter-spacing:-2.5px;margin:20px 0 24px}
+.subtitle{font-size:clamp(19px,2.6vw,25px);color:var(--muted);margin:0}.meta{margin-top:28px;color:#737985;font-size:14px}
+main{padding:70px 0 0}article{width:min(var(--reading),calc(100% - 40px));margin:auto}
+article p{font-size:18px;margin:0 0 25px;color:#e1e3e7}article h2{font-size:clamp(30px,5vw,46px);line-height:1.12;margin:65px 0 22px}
+article h3{font-size:26px;line-height:1.2;margin:35px 0 15px}.lead{font-size:21px;color:#fff}
+.divider{height:1px;background:var(--line);margin:55px 0}
+.quote{margin:42px 0;padding:28px;border-left:3px solid var(--accent);background:var(--panel);font-size:22px;line-height:1.5}
+.flow{background:var(--panel);border:1px solid var(--line);padding:25px;margin:30px 0;color:var(--accent);font-weight:bold;text-align:center;line-height:2}
+.flow span{display:block;color:var(--muted);font-size:15px}
+ul{padding-left:25px;margin:0 0 28px}li{margin-bottom:9px;font-size:18px;color:#e1e3e7}
+.box{border:1px solid #455425;background:linear-gradient(135deg,#18200f,#10141c);padding:32px;margin:50px 0}
+.box h3{margin-top:0;color:var(--accent)}.summary{background:var(--panel);border:1px solid var(--line);padding:30px;margin:40px 0}.summary h3{margin-top:0}.summary strong{color:var(--accent)}
+.cta-section{margin-top:80px;border-top:1px solid var(--line);padding:75px 0}.cta{width:min(var(--max),calc(100% - 40px));margin:auto;background:var(--accent);color:#111700;padding:clamp(30px,6vw,60px)}
+.cta h2{font-size:clamp(35px,5vw,58px);line-height:1.05;margin:0 0 20px;max-width:760px}.cta p{font-size:19px;max-width:700px}.button{display:inline-block;margin-top:12px;padding:14px 21px;background:#101400;color:#fff;border-radius:4px;font-weight:bold}
+footer{padding:45px 0;color:#737985}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.small{font-size:13px}
+@media(max-width:700px){.wrap{width:min(var(--max),calc(100% - 28px))}.hero{padding:65px 0 50px}main{padding-top:45px}article{width:calc(100% - 28px)}article p,li{font-size:17px}.lead{font-size:19px}article h2{margin-top:50px}.quote{font-size:20px;padding:22px}.nav{height:68px}.brand{letter-spacing:4px;font-size:14px}.mark{width:38px;height:38px}.home{padding:8px 12px;font-size:13px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="../index.html"><span class="mark">O</span><span>OMNIFLO</span></a><a class="home" href="../index.html">← Home</a></div></header>
+<section class="hero"><div class="wrap"><div class="reading"><div class="kicker">OmniFlo Learn • Website Guide</div><h1>How to Build and Publish a Simple Website: A Beginner's Journey</h1><p class="subtitle">You built the website. You bought the domain. You connected everything—or at least, you thought you did. Then somewhere along the journey, something broke.</p><div class="meta">Beginner Guide • OmniFlo Journal • 8–10 min read</div></div></div></section>
+<main><article>
+<p class="lead">A page led nowhere. A link returned an error. You opened a dashboard filled with words you barely understood—deployment, repository, branch, domain, DNS and hosting.</p>
+<p>Suddenly, a question appeared:</p><div class="quote">“What exactly have I built?”</div>
+<p>If you have ever reached that point, welcome.</p>
+<p>You are not necessarily bad with technology. You may simply be experiencing something that happens to many beginners: <strong>you have been given the pieces without being shown how the pieces fit together.</strong></p>
+<div class="divider"></div>
+<h2>The Beginning of the Confusion</h2>
+<p>Today, creating a website is easier than it has ever been. Artificial intelligence can generate code. Website builders can create pages in minutes. Templates can create a professional-looking design without requiring you to understand every line behind it.</p>
+<p>But building a website is not the same thing as publishing one. And publishing a website is not necessarily the same thing as connecting a domain.</p>
+<p>These are different parts of the same journey.</p>
+<p>The problem is that beginners often encounter all of them at once. You create something. Then you are told to upload it. Then connect a repository. Then deploy the project. Then connect a domain. Then suddenly someone mentions DNS.</p>
+<p>At this point, the website that was supposed to make life easier begins to feel like a machine with fifty buttons and no instruction manual.</p>
+<p>But let us slow down.</p>
+
+<h2>Think of a Website as a House</h2>
+<p>Imagine you want to build a house. The house itself is the thing people will eventually enter. In the digital world, your <strong>website files</strong> are the house.</p>
+<p>Those files may contain:</p>
+<ul><li>HTML</li><li>Images</li><li>Text</li><li>Buttons</li><li>Pages</li><li>Styles</li><li>Code</li></ul>
+<p>When someone creates a simple website, they are essentially creating the structure and appearance of that digital house.</p>
+<p>But a house sitting on your computer is not yet accessible to the world. For people to visit it, it must be placed somewhere online. This is where <strong>hosting and deployment</strong> enter the story.</p>
+
+<h2>Your Domain Is Not Your Website</h2>
+<p>This is one of the biggest points of confusion. A domain name is not the website itself.</p>
+<p>Think of it as the <strong>address people use to find your house</strong>.</p>
+<div class="quote">The website is what people see.<br><br>The domain is how people find it.<br><br>Hosting is where the website is made available online.</div>
+<p>You can own a domain without having a completed website. You can build a website without owning a custom domain. And you can have both—but still need to connect them correctly.</p>
+<p>Different pieces. One system.</p>
+
+<h2>Building the Website Is Only the Beginning</h2>
+<p>Many people believe the difficult part is creating the website. Sometimes it is. But the journey usually looks more like this:</p>
+<div class="flow">IDEA<span>↓</span>WEBSITE DESIGN<span>↓</span>WEBSITE FILES<span>↓</span>STORAGE OR REPOSITORY<span>↓</span>DEPLOYMENT<span>↓</span>A LIVE WEBSITE<span>↓</span>DOMAIN CONNECTION</div>
+<p>The first time you see this process, it can feel complicated. But each step has one job. You do not need to understand everything at the same time. You simply need to understand what the next piece is supposed to do.</p>
+
+<h2>Where GitHub Enters the Story</h2>
+<p>Imagine you have finished writing a book. You would not want the only copy to live on one person's phone. You would want a place where the work can be stored, organized and updated.</p>
+<p>For many websites, a code repository can serve a similar purpose. Your website files live inside a repository, which can keep track of changes.</p>
+<div class="flow">YOU UPDATE THE FILES<span>↓</span>THE REPOSITORY STORES THE UPDATE<span>↓</span>THE DEPLOYMENT PLATFORM DETECTS THE CHANGE<span>↓</span>THE WEBSITE IS UPDATED</div>
+<p>That means you do not necessarily need to rebuild and upload your entire website every time you make a small change.</p>
+
+<h2>The Day the Website Refused to Work</h2>
+<p>Sometimes the problem is not the entire website. Sometimes the problem is one small detail:</p>
+<ul><li>A filename.</li><li>A missing page.</li><li>A broken link.</li><li>A capital letter where there should be a lowercase letter.</li></ul>
+<p>This is where beginners can make another common mistake:</p>
+<div class="quote">They panic and rebuild everything.</div>
+<p>But technology often rewards a different approach. Stop. Look at the problem. Find the broken connection. Fix that connection. Then test again.</p>
+<p>For a simple website, one particularly important file is often called <strong>index.html</strong>. It is commonly used as the main entry point for a website.</p>
+<div class="box"><h3>The lesson</h3><p>Technology is not necessarily difficult because every part is complicated. Sometimes it is difficult because systems depend on connections—and details determine whether those connections work.</p></div>
+
+<h2>From a File to a Living Website</h2>
+<p>You begin with a file on your computer or phone. Inside that file is code. The code becomes a design. The design becomes a webpage. The webpage is uploaded. A platform deploys it.</p>
+<p>And suddenly, something that previously existed only on your device can be opened by someone somewhere else.</p>
+<p>That is the moment your project begins to feel real.</p>
+<p>But a live website should not be treated as a finished object. It is a living platform. You can improve it, add pages, publish articles, introduce products, create new services and fix mistakes.</p>
+<p>The important thing is to build a strong enough foundation that you do not need to destroy the entire house every time you want to add a new room.</p>
+
+<h2>The Beginner's Biggest Mistake</h2>
+<p>The biggest mistake is not necessarily writing bad code. It is often trying to understand the entire internet before taking the next step.</p>
+<p>You do not need to become an expert in everything. You need to understand the journey well enough to move forward.</p>
+<div class="summary"><h3>Ask these four questions:</h3><p><strong>What have I built?</strong></p><p><strong>Where are my files?</strong></p><p><strong>How is the website being published?</strong></p><p><strong>What address will people use to find it?</strong></p></div>
+<p>Those four questions can already give a beginner a much clearer picture.</p>
+
+<h2>A Website Is Not Finished When It Goes Live</h2>
+<p>This may be the most important lesson. A website going live is not the end of the journey. It is the beginning of another one.</p>
+<p>A website without useful content may receive few visitors. A website without a purpose may struggle to create value. A website without a system may become difficult to maintain.</p>
+<div class="quote">The real question is not simply, “How do I get my website online?”<br><br>The deeper question is: “What happens after it goes online?”</div>
+<p>Will you teach? Will you sell? Will you offer a service? Will you publish useful information? Will you solve a particular problem?</p>
+<p>A domain gives people an address. <strong>But value gives them a reason to visit.</strong></p>
+
+<h2>What We Learned</h2>
+<p>Building and publishing a website can feel confusing because several different systems are involved. But when we separate them, the journey becomes easier to understand:</p>
+<div class="summary"><h3>Your website files</h3><p>These create what visitors see.</p><h3>Your repository</h3><p>This stores and organizes your files and updates.</p><h3>Your hosting or deployment platform</h3><p>This makes the website available online.</p><h3>Your domain</h3><p>This gives people a memorable address for finding it.</p></div>
+<p>Once those pieces begin to make sense, the process becomes less mysterious.</p>
+<div class="quote">You do not need to know everything. You need to know what connects to what.</div>
+
+<h2>The Journey Continues</h2>
+<p>Perhaps your first website will not be perfect. Perhaps you will break a page. Perhaps you will upload the wrong file. Perhaps you will spend an hour solving a problem that eventually turns out to be one missing letter.</p>
+<p>That does not mean you have failed.</p>
+<p>It means you are building.</p>
+<p>The important thing is not to retreat when you stare at a screen and wonder:</p>
+<div class="quote">“What on earth am I doing?”</div>
+<p>Pause. Understand the problem. Take the next step. Then take another.</p>
+<p>Because a website does not become valuable simply because it exists. It becomes valuable when you continue building what lives inside it.</p>
+
+<h2>Welcome to OmniFlo</h2>
+<p><strong>Technology changes.</strong></p><p><strong>Tools evolve.</strong></p><p><strong>But useful principles endure.</strong></p>
+<p>At OmniFlo, we explore technology not simply to admire what it can do—but to understand how it can become useful.</p>
+<div class="box"><h3>This is where the journey continues.</h3><p>Explore, learn, build, improve—and keep moving forward one useful step at a time.</p></div>
+</article></main>
+
+<section class="cta-section"><div class="cta"><div class="kicker" style="color:#3f5000">Keep Exploring OmniFlo</div><h2>Technology becomes more useful when you understand what to do next.</h2><p>Return to OmniFlo and explore practical guides, resources and digital solutions.</p><a class="button" href="../index.html">← Back to OmniFlo</a></div></section>
+<footer><div class="wrap footer-row"><div><strong>OMNIFLO</strong><div class="small">Make technology useful.</div></div><div class="small">© <span id="year"></span> OmniFlo</div></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body></html>

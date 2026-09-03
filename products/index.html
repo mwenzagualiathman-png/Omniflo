@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Discover practical digital products, software, applications and tools created by OmniFlo.">
+
+  <title>Products | OmniFlo</title>
+
+  <style>
+
+    /* =========================================
+       OMNIFLO PRODUCTS ROOM
+       ========================================= */
+
+    :root {
+      --navy: #102a43;
+      --deep: #081a2c;
+      --blue: #1f5f8b;
+      --light-blue: #eaf4fb;
+
+      --cream: #f8f4ec;
+      --white: #ffffff;
+
+      --orange: #e67e22;
+      --gold: #f4b942;
+
+      --text: #1f2933;
+      --muted: #61758a;
+
+      --line: #d9e2ec;
+
+      --green: #2f855a;
+
+      --max-width: 1180px;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: var(--cream);
+      color: var(--text);
+
+      line-height: 1.6;
+    }
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    .container {
+      width:
+        min(
+          var(--max-width),
+          calc(100% - 40px)
+        );
+
+      margin: auto;
+    }
+
+
+    /* =========================================
+       HEADER
+       ========================================= */
+
+    header {
+
+      position: sticky;
+      top: 0;
+
+      z-index: 100;
+
+      background:
+        rgba(255,255,255,0.96);
+
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+
+    .navbar {
+
+      min-height: 76px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      gap: 25px;
+    }
+
+
+    .brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      font-size: 20px;
+
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
+      color: var(--navy);
+    }
+
+
+    .logo-mark {
+
+      width: 42px;
+
+      height: 42px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--blue)
+        );
+
+      color: white;
+
+      display: grid;
+
+      place-items: center;
+
+      font-weight: 900;
+
+      letter-spacing: 0;
+    }
+
+
+    .nav-links {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 24px;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      color: var(--muted);
+    }
+
+
+    .nav-links a:hover {
+
+      color: var(--orange);
+    }
+
+
+    .nav-button {
+
+      padding:
+        10px 16px;
+
+      background: var(--navy);
+
+      color: white;
+
+      border-radius: 6px;
+    }
+
+
+    .menu-button {
+
+      display: none;
+
+      border: none;
+
+      background: none;
+
+      font-size: 28px;
+
+      cursor: pointer;
+
+      color: var(--navy);
+    }
+
+
+    /* =========================================
+       HERO
+       ========================================= */
+
+    .hero {
+
+      padding:
+        100px 0 90px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--deep),
+          var(--navy)
+        );
+
+      color: white;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
+    .hero::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 500px;
+
+      height: 500px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(230,126,34,0.25),
+          transparent 65%
+        );
+
+      right: -150px;
+
+      top: -150px;
+    }
+
+
+    .hero-content {
+
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 850px;
+    }
+
+
+    .eyebrow {
+
+      display: inline-block;
+
+      color: var(--gold);
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 18px;
+    }
+
+
+    h1 {
+
+      font-size:
+        clamp(
+          52px,
+          9vw,
+          105px
+        );
+
+      line-height: 0.95;
+
+      letter-spacing: -3px;
+
+      margin:
+        0 0 25px;
+    }
+
+
+    h1 span {
+
+      color: var(--gold);
+    }
+
+
+    .hero-text {
+
+      max-width: 700px;
+
+      font-size:
+        clamp(
+          18px,
+          2vw,
+          23px
+        );
+
+      color: #d9e7f2;
+    }
+
+
+    .hero-actions {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+
+      margin-top: 35px;
+    }
+
+
+    .button {
+
+      display: inline-block;
+
+      padding:
+        14px 22px;
+
+      border-radius: 6px;
+
+      font-weight: 700;
+
+      transition:
+        transform 0.2s,
+        opacity 0.2s;
+    }
+
+
+    .button:hover {
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    .button-primary {
+
+      background: var(--orange);
+
+      color: white;
+    }
+
+
+    .button-secondary {
+
+      border:
+        1px solid
+        rgba(255,255,255,0.4);
+
+      color: white;
+    }
+
+
+    /* =========================================
+       GENERAL SECTIONS
+       ========================================= */
+
+    section {
+
+      padding:
+        90px 0;
+    }
+
+
+    .section-heading {
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items: end;
+
+      gap: 30px;
+
+      margin-bottom: 45px;
+    }
+
+
+    .section-heading h2 {
+
+      margin: 0;
+
+      font-size:
+        clamp(
+          38px,
+          6vw,
+          70px
+        );
+
+      line-height: 1;
+
+      color: var(--navy);
+
+      letter-spacing: -2px;
+    }
+
+
+    .section-intro {
+
+      max-width: 550px;
+
+      color: var(--muted);
+
+      font-size: 18px;
+    }
+
+
+    /* =========================================
+       FEATURED PRODUCT
+       ========================================= */
+
+    .featured-product {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 0;
+
+      background: white;
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--line);
+
+      box-shadow:
+        0 15px 40px
+        rgba(16,42,67,0.08);
+    }
+
+
+    .product-visual {
+
+      min-height: 500px;
+
+      padding: 55px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #163b5c,
+          #0b2034
+        );
+
+      color: white;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content:
+        center;
+    }
+
+
+    .product-badge {
+
+      display: inline-block;
+
+      width: fit-content;
+
+      padding:
+        7px 12px;
+
+      border-radius: 30px;
+
+      background:
+        rgba(47,133,90,0.2);
+
+      border:
+        1px solid
+        rgba(85,200,130,0.4);
+
+      color: #8ef0ae;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+    }
+
+
+    .product-name {
+
+      font-size:
+        clamp(
+          42px,
+          6vw,
+          70px
+        );
+
+      line-height: 0.95;
+
+      margin:
+        25px 0;
+
+      letter-spacing: -2px;
+    }
+
+
+    .product-name span {
+
+      color: var(--gold);
+    }
+
+
+    .product-visual p {
+
+      color: #c6d8e7;
+
+      max-width: 480px;
+
+      font-size: 18px;
+    }
+
+
+    .product-preview {
+
+      margin-top: 30px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+      padding: 20px;
+
+      border-radius: 10px;
+    }
+
+
+    .preview-top {
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      margin-bottom: 18px;
+
+      color: #dce9f2;
+
+      font-size: 13px;
+    }
+
+
+    .preview-items {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 10px;
+    }
+
+
+    .preview-item {
+
+      background:
+        rgba(255,255,255,0.1);
+
+      padding: 15px;
+
+      border-radius: 7px;
+
+      font-size: 13px;
+    }
+
+
+    .product-info {
+
+      padding: 60px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content:
+        center;
+    }
+
+
+    .product-info h3 {
+
+      font-size:
+        clamp(
+          34px,
+          4vw,
+          52px
+        );
+
+      line-height: 1.05;
+
+      margin:
+        0 0 20px;
+
+      color: var(--navy);
+    }
+
+
+    .product-info p {
+
+      color: var(--muted);
+
+      font-size: 17px;
+    }
+
+
+    .problem-list {
+
+      margin:
+        25px 0;
+
+      padding: 0;
+
+      list-style: none;
+    }
+
+
+    .problem-list li {
+
+      padding:
+        10px 0;
+
+      border-bottom:
+        1px solid var(--line);
+
+      color: var(--text);
+    }
+
+
+    .problem-list li::before {
+
+      content: "✓";
+
+      color: var(--green);
+
+      font-weight: 900;
+
+      margin-right: 12px;
+    }
+
+
+    .product-actions {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+
+      margin-top: 15px;
+    }
+
+
+    .dark-button {
+
+      background: var(--navy);
+
+      color: white;
+    }
+
+
+    .light-button {
+
+      border:
+        1px solid var(--line);
+
+      color: var(--navy);
+    }
+
+
+    /* =========================================
+       PRODUCT CATEGORIES
+       ========================================= */
+
+    .categories {
+
+      background:
+        var(--light-blue);
+    }
+
+
+    .category-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+
+    .category-card {
+
+      background: white;
+
+      padding: 32px;
+
+      border-radius: 10px;
+
+      border:
+        1px solid var(--line);
+
+      min-height: 250px;
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    }
+
+
+    .category-card:hover {
+
+      transform:
+        translateY(-5px);
+
+      box-shadow:
+        0 15px 30px
+        rgba(16,42,67,0.08);
+    }
+
+
+    .category-number {
+
+      color: var(--orange);
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+    }
+
+
+    .category-card h3 {
+
+      color: var(--navy);
+
+      font-size: 27px;
+
+      margin:
+        25px 0 12px;
+    }
+
+
+    .category-card p {
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================
+       PRODUCT VISION
+       ========================================= */
+
+    .vision {
+
+      background: white;
+    }
+
+
+    .vision-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 60px;
+
+      align-items: center;
+    }
+
+
+    .vision-title {
+
+      font-size:
+        clamp(
+          42px,
+          6vw,
+          75px
+        );
+
+      color: var(--navy);
+
+      line-height: 0.98;
+
+      margin: 0;
+    }
+
+
+    .vision-text {
+
+      font-size: 19px;
+
+      color: var(--muted);
+    }
+
+
+    .principle {
+
+      margin-top: 30px;
+
+      padding: 25px;
+
+      background: var(--cream);
+
+      border-left:
+        5px solid var(--orange);
+
+      font-size: 20px;
+
+      font-weight: 700;
+
+      color: var(--navy);
+    }
+
+
+    /* =========================================
+       FUTURE PRODUCTS
+       ========================================= */
+
+    .future-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+
+    .future-card {
+
+      padding: 30px;
+
+      background: white;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 10px;
+
+      position: relative;
+
+      min-height: 230px;
+    }
+
+
+    .coming {
+
+      display: inline-block;
+
+      padding:
+        6px 10px;
+
+      background:
+        #fff3d6;
+
+      color:
+        #9a6200;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      border-radius: 20px;
+    }
+
+
+    .future-card h3 {
+
+      font-size: 25px;
+
+      color: var(--navy);
+
+      margin:
+        25px 0 12px;
+    }
+
+
+    .future-card p {
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================
+       CALL TO ACTION
+       ========================================= */
+
+    .cta-section {
+
+      padding:
+        100px 0;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          #c95e13
+        );
+
+      color: white;
+
+      text-align: center;
+    }
+
+
+    .cta-section h2 {
+
+      font-size:
+        clamp(
+          45px,
+          7vw,
+          80px
+        );
+
+      line-height: 0.95;
+
+      margin:
+        20px auto;
+
+      max-width: 850px;
+    }
+
+
+    .cta-section p {
+
+      max-width: 650px;
+
+      margin:
+        0 auto 30px;
+
+      font-size: 19px;
+    }
+
+
+    .white-button {
+
+      background: white;
+
+      color: var(--navy);
+    }
+
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+
+    footer {
+
+      background: var(--deep);
+
+      color: white;
+
+      padding:
+        55px 0;
+    }
+
+
+    .footer-content {
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 25px;
+    }
+
+
+    .footer-brand {
+
+      font-size: 20px;
+
+      font-weight: 900;
+
+      letter-spacing: 3px;
+    }
+
+
+    .footer-note {
+
+      color: #9db3c5;
+
+      margin-top: 8px;
+
+      font-size: 14px;
+    }
+
+
+    .copyright {
+
+      color: #9db3c5;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 850px) {
+
+
+      .nav-links {
+
+        display: none;
+
+      }
+
+
+      .menu-button {
+
+        display: block;
+
+      }
+
+
+      .nav-links.show {
+
+        display: flex;
+
+        position: absolute;
+
+        top: 76px;
+
+        left: 0;
+
+        right: 0;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+        padding: 25px;
+
+        background: white;
+
+        border-bottom:
+          1px solid var(--line);
+      }
+
+
+      .featured-product {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .product-visual {
+
+        min-height: auto;
+
+        padding: 40px 28px;
+      }
+
+
+      .product-info {
+
+        padding: 40px 28px;
+      }
+
+
+      .section-heading {
+
+        display: block;
+      }
+
+
+      .section-intro {
+
+        margin-top: 20px;
+      }
+
+
+      .category-grid,
+      .future-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .vision-grid {
+
+        grid-template-columns:
+          1fr;
+
+        gap: 30px;
+      }
+
+
+      .container {
+
+        width:
+          min(
+            var(--max-width),
+            calc(100% - 28px)
+          );
+      }
+
+
+      section {
+
+        padding:
+          70px 0;
+      }
+
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================
+       HEADER
+       ===================================== -->
+
+  <header>
+
+    <div class="container navbar">
+
+      <a href="../index.html"
+         class="brand">
+
+        <span class="logo-mark">O</span>
+
+        <span>OMNIFLO</span>
+
+      </a>
+
+
+      <nav
+        class="nav-links"
+        id="navLinks">
+
+        <a href="../index.html">Home</a>
+
+        <a href="../articles/index.html">
+          Articles
+        </a>
+
+        <a href="#featured">
+          Products
+        </a>
+
+        <a href="#future">
+          What's Next
+        </a>
+
+        <a href="#contact"
+           class="nav-button">
+          Work With Us
+        </a>
+
+      </nav>
+
+
+      <button
+        class="menu-button"
+        id="menuButton">
+
+        ☰
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- =====================================
+         HERO
+         ===================================== -->
+
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+
+            OmniFlo Products
+
+          </div>
+
+
+          <h1>
+
+            Built for
+            <br>
+
+            <span>
+              real problems.
+            </span>
+
+          </h1>
+
+
+          <p class="hero-text">
+
+            OmniFlo creates practical digital
+            products designed to make work
+            easier, solve everyday problems
+            and turn useful ideas into tools
+            people can actually use.
+
+          </p>
+
+
+          <div class="hero-actions">
+
+            <a
+              href="#featured"
+              class="button button-primary">
+
+              Explore Our Products ↓
+
+            </a>
+
+
+            <a
+              href="#future"
+              class="button button-secondary">
+
+              See What's Coming
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         FEATURED PRODUCT
+         ===================================== -->
+
+    <section id="featured">
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="eyebrow">
+
+              01 — Featured Product
+
+            </div>
+
+
+            <h2>
+
+              Our first
+              <br>
+
+              digital tool.
+
+            </h2>
+
+          </div>
+
+
+          <p class="section-intro">
+
+            The best products often begin with
+            a problem someone has personally
+            witnessed. OmniFlo Resto began
+            exactly that way.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="featured-product">
+
+
+          <!-- PRODUCT VISUAL -->
+
+          <div class="product-visual">
+
+
+            <div class="product-badge">
+
+              ● OPERATIONAL
+
+            </div>
+
+
+            <h3 class="product-name">
+
+              OmniFlo
+              <br>
+
+              <span>Resto.</span>
+
+            </h3>
+
+
+            <p>
+
+              A practical restaurant cashier
+              and record-management system
+              designed to help restaurants
+              move beyond paper records.
+
+            </p>
+
+
+            <div class="product-preview">
+
+              <div class="preview-top">
+
+                <span>
+                  RESTAURANT DASHBOARD
+                </span>
+
+                <span>
+                  ● LIVE
+                </span>
+
+              </div>
+
+
+              <div class="preview-items">
+
+                <div class="preview-item">
+
+                  🍽️ Menu
+                  <br>
+
+                  Management
+
+                </div>
+
+
+                <div class="preview-item">
+
+                  💰 Cash
+                  <br>
+
+                  Records
+
+                </div>
+
+
+                <div class="preview-item">
+
+                  📋 Order
+                  <br>
+
+                  Tracking
+
+                </div>
+
+
+                <div class="preview-item">
+
+                  📊 Business
+                  <br>
+
+                  Records
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRODUCT INFORMATION -->
+
+          <div class="product-info">
+
+
+            <div class="eyebrow">
+
+              Restaurant Technology
+
+            </div>
+
+
+            <h3>
+
+              Stop losing important
+              business records.
+
+            </h3>
+
+
+            <p>
+
+              After visiting restaurants,
+              one problem became impossible
+              to ignore: many businesses
+              still depend entirely on
+              physical books to record
+              sales and transactions.
+
+            </p>
+
+
+            <p>
+
+              Books become full. Records
+              become difficult to find.
+              Searching for an old
+              transaction can take time.
+              And important information
+              can eventually be lost.
+
+            </p>
+
+
+            <ul class="problem-list">
+
+              <li>
+                Record restaurant orders
+                digitally
+              </li>
+
+              <li>
+                Keep business records
+                organized
+              </li>
+
+              <li>
+                Find information more
+                easily
+              </li>
+
+              <li>
+                Reduce dependence on
+                physical record books
+              </li>
+
+              <li>
+                Make daily restaurant
+                operations easier
+              </li>
+
+            </ul>
+
+
+            <div class="product-actions">
+
+              <a
+                href="https://resto-cashier.netlify.app"
+                target="_blank"
+                rel="noopener"
+                class="button dark-button">
+
+                Try OmniFlo Resto ↗
+
+              </a>
+
+
+              <a
+                href="#future"
+                class="button light-button">
+
+                More Products
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         PRODUCT CATEGORIES
+         ===================================== -->
+
+    <section class="categories">
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="eyebrow">
+
+              The Product Factory
+
+            </div>
+
+
+            <h2>
+
+              One idea.
+              <br>
+
+              Many solutions.
+
+            </h2>
+
+          </div>
+
+
+          <p class="section-intro">
+
+            OmniFlo is not limited to one
+            type of digital product. As we
+            grow, useful ideas can become
+            software, applications, tools
+            and digital resources.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="category-grid">
+
+
+          <div class="category-card">
+
+            <div class="category-number">
+
+              01 / SOFTWARE
+
+            </div>
+
+
+            <h3>
+
+              SaaS Products
+
+            </h3>
+
+
+            <p>
+
+              Online software designed to
+              help businesses and
+              individuals solve specific
+              problems more efficiently.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="category-card">
+
+            <div class="category-number">
+
+              02 / MOBILE
+
+            </div>
+
+
+            <h3>
+
+              Applications
+
+            </h3>
+
+
+            <p>
+
+              Practical mobile and web
+              applications built around
+              everyday challenges and
+              useful opportunities.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="category-card">
+
+            <div class="category-number">
+
+              03 / DIGITAL
+
+            </div>
+
+
+            <h3>
+
+              Tools & Systems
+
+            </h3>
+
+
+            <p>
+
+              Templates, calculators,
+              dashboards and practical
+              systems that help people
+              work smarter.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         PRODUCT PHILOSOPHY
+         ===================================== -->
+
+    <section class="vision">
+
+      <div class="container">
+
+
+        <div class="vision-grid">
+
+
+          <div>
+
+            <div class="eyebrow">
+
+              The OmniFlo Principle
+
+            </div>
+
+
+            <h2 class="vision-title">
+
+              We don't want
+              to create
+              <br>
+
+              <span style="color:#e67e22">
+                noise.
+              </span>
+
+            </h2>
+
+          </div>
+
+
+          <div>
+
+            <p class="vision-text">
+
+              The internet already contains
+              thousands of applications,
+              platforms and digital
+              products.
+
+            </p>
+
+
+            <p class="vision-text">
+
+              OmniFlo's goal is not simply
+              to create something because
+              technology makes it possible.
+
+              Our goal is to look at real
+              problems and ask:
+
+              <strong>
+
+                Can we make this easier?
+
+              </strong>
+
+            </p>
+
+
+            <div class="principle">
+
+              Every product should have a
+              purpose: solve a problem,
+              save time, reduce confusion
+              or create meaningful value.
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         FUTURE PRODUCTS
+         ===================================== -->
+
+    <section id="future">
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="eyebrow">
+
+              Building Forward
+
+            </div>
+
+
+            <h2>
+
+              The next
+              <br>
+
+              ideas are coming.
+
+            </h2>
+
+          </div>
+
+
+          <p class="section-intro">
+
+            This room will continue growing.
+            Every useful product OmniFlo
+            creates will eventually have a
+            place here.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="future-grid">
+
+
+          <div class="future-card">
+
+            <span class="coming">
+
+              FUTURE PRODUCT
+
+            </span>
+
+
+            <h3>
+
+              Business Tools
+
+            </h3>
+
+
+            <p>
+
+              Digital systems designed to
+              help small businesses manage
+              everyday work more easily.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="future-card">
+
+            <span class="coming">
+
+              FUTURE PRODUCT
+
+            </span>
+
+
+            <h3>
+
+              AI Solutions
+
+            </h3>
+
+
+            <p>
+
+              Practical artificial
+              intelligence tools designed
+              around specific human and
+              business needs.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="future-card">
+
+            <span class="coming">
+
+              FUTURE PRODUCT
+
+            </span>
+
+
+            <h3>
+
+              Digital Knowledge
+
+            </h3>
+
+
+            <p>
+
+              E-books, guides and useful
+              digital resources that help
+              people understand and apply
+              modern technology.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         CTA
+         ===================================== -->
+
+    <section
+      class="cta-section"
+      id="contact">
+
+      <div class="container">
+
+
+        <div class="eyebrow"
+             style="color:#fff3d6">
+
+          THIS IS ONLY THE BEGINNING
+
+        </div>
+
+
+        <h2>
+
+          One problem can become
+          the next great product.
+
+        </h2>
+
+
+        <p>
+
+          OmniFlo is being built one useful
+          solution at a time. The journey
+          starts with seeing the problems
+          that other people have learned
+          to live with.
+
+        </p>
+
+
+        <a
+          href="../index.html"
+          class="button white-button">
+
+          Return to OmniFlo Home ↑
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================
+       FOOTER
+       ===================================== -->
+
+  <footer>
+
+    <div
+      class="container
+             footer-content">
+
+
+      <div>
+
+        <div class="footer-brand">
+
+          OMNIFLO
+
+        </div>
+
+
+        <div class="footer-note">
+
+          Make technology useful.
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="copyright">
+
+        ©
+        <span id="year"></span>
+
+        OmniFlo.
+
+        Built one useful solution
+        at a time.
+
+      </div>
+
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================
+       JAVASCRIPT
+       ===================================== -->
+
+  <script>
+
+
+    const menuButton =
+      document.getElementById(
+        "menuButton"
+      );
+
+
+    const navLinks =
+      document.getElementById(
+        "navLinks"
+      );
+
+
+    menuButton.onclick =
+      function () {
+
+        navLinks.classList.toggle(
+          "show"
+        );
+
+      };
+
+
+
+    document
+      .getElementById("year")
+      .textContent =
+        new Date().getFullYear();
+
+
+  </script>
+
+
+</body>
+
+</html>

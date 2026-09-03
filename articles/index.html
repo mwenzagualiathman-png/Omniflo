@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Explore practical articles, guides and useful knowledge from OmniFlo.">
+
+    <title>Articles — OmniFlo</title>
+
+    <!-- Central OmniFlo Design System -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+
+        .articles-hero {
+            padding: 100px 0 70px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .articles-hero h1 {
+            max-width: 850px;
+        }
+
+        .articles-hero p {
+            max-width: 700px;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .article-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            padding: 28px;
+            min-height: 320px;
+            transition: 0.2s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-category {
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .article-card h2 {
+            font-size: 29px;
+            line-height: 1.15;
+            margin: 25px 0 15px;
+        }
+
+        .article-card p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .article-link {
+            margin-top: auto;
+            padding-top: 30px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .featured-content {
+            padding: 50px;
+            border: 1px solid var(--line);
+            background: var(--panel);
+        }
+
+        .featured-content h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            line-height: 1.05;
+            margin: 20px 0;
+        }
+
+        .featured-content p {
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 650px;
+        }
+
+        .featured-side {
+            padding: 45px;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .featured-side p {
+            color: var(--muted);
+        }
+
+        .empty-note {
+            margin-top: 60px;
+            padding: 35px;
+            border: 1px dashed var(--line);
+            text-align: center;
+            color: var(--muted);
+        }
+
+        @media (max-width: 800px) {
+
+            .articles-hero {
+                padding: 75px 0 55px;
+            }
+
+            .articles-grid,
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content,
+            .featured-side {
+                padding: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="wrap nav">
+
+            <a href="../index.html" class="brand">
+
+                <span class="mark">O</span>
+
+                <span>OMNIFLO</span>
+
+            </a>
+
+
+            <nav class="links" id="navLinks">
+
+                <a href="../index.html#learn">Learn</a>
+
+                <a href="../index.html#solutions">Solutions</a>
+
+                <a href="../index.html#products">Products</a>
+
+                <a href="../index.html#resources">Resources</a>
+
+                <a href="../index.html#about">About</a>
+
+            </nav>
+
+
+            <button class="menu" id="menuBtn">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ARTICLES HERO -->
+
+        <section class="articles-hero">
+
+            <div class="wrap">
+
+                <div class="eyebrow">
+
+                    OMNIFLO KNOWLEDGE
+
+                </div>
+
+
+                <h1>
+
+                    Ideas worth
+                    <span>understanding.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Practical articles about technology, artificial intelligence,
+                    digital skills and the changing world around us.
+
+                    No unnecessary complexity.
+                    Just useful knowledge that leads somewhere.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURED ARTICLE -->
+
+        <section>
+
+            <div class="wrap">
+
+
+                <div class="section-top">
+
+                    <div>
+
+                        <div class="eyebrow">
+
+                            Featured Article
+
+                        </div>
+
+
+                        <h2>
+
+                            Start here.
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="featured-article">
+
+
+                    <div class="featured-content">
+
+                        <div class="article-category">
+
+                            WEBSITE GUIDE
+
+                        </div>
+
+
+                        <h2>
+
+                            How to Build and Publish a Simple Website
+
+                        </h2>
+
+
+                        <p>
+
+                            A practical beginner's journey from creating website
+                            files to publishing a working website online.
+
+                            No complicated technical language.
+                            Just the important steps.
+
+                        </p>
+
+
+                        <div class="actions">
+
+                            <a
+                                class="btn primary"
+                                href="build-and-publish-a-simple-website-1.html">
+
+                                Read Article →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="featured-side">
+
+                        <div>
+
+                            <div class="eyebrow">
+
+                                OMNIFLO PRINCIPLE
+
+                            </div>
+
+
+                            <h3>
+
+                                Technology becomes useful when people understand
+                                how to use it.
+
+                            </h3>
+
+                        </div>
+
+
+                        <p>
+
+                            This library will continue growing one useful
+                            question at a time.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ARTICLE LIBRARY -->
+
+        <section>
+
+            <div class="wrap">
+
+
+                <div class="section-top">
+
+                    <div>
+
+                        <div class="eyebrow">
+
+                            THE LIBRARY
+
+                        </div>
+
+
+                        <h2>
+
+                            More to explore.
+
+                        </h2>
+
+                    </div>
+
+
+                    <p class="section-intro">
+
+                        Every article begins with a useful question.
+                        As OmniFlo grows, this library will grow with practical
+                        answers, guides and ideas.
+
+                    </p>
+
+                </div>
+
+
+                <div class="articles-grid">
+
+
+                    <!-- ARTICLE ONE -->
+
+                    <a
+                        class="article-card"
+                        href="build-and-publish-a-simple-website-1.html">
+
+                        <div class="article-category">
+
+                            WEBSITE GUIDE
+
+                        </div>
+
+
+                        <h2>
+
+                            How to Build and Publish a Simple Website
+
+                        </h2>
+
+
+                        <p>
+
+                            A simple path from website files to a live
+                            online presence.
+
+                        </p>
+
+
+                        <div class="article-link">
+
+                            Read article →
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- FUTURE ARTICLE -->
+
+                    <div class="article-card">
+
+                        <div class="article-category">
+
+                            COMING NEXT
+
+                        </div>
+
+
+                        <h2>
+
+                            How to Use AI Without Losing Your Ability to Think
+
+                        </h2>
+
+
+                        <p>
+
+                            A practical exploration of artificial intelligence,
+                            critical thinking and the human advantage.
+
+                        </p>
+
+
+                        <div class="article-link">
+
+                            Coming soon
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FUTURE ARTICLE -->
+
+                    <div class="article-card">
+
+                        <div class="article-category">
+
+                            COMING NEXT
+
+                        </div>
+
+
+                        <h2>
+
+                            What Digital Skills Are Actually Worth Learning?
+
+                        </h2>
+
+
+                        <p>
+
+                            How to focus on useful skills instead of chasing
+                            every new trend on the internet.
+
+                        </p>
+
+
+                        <div class="article-link">
+
+                            Coming soon
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="empty-note">
+
+                    <strong>
+
+                        This is only the beginning.
+
+                    </strong>
+
+                    <br>
+
+                    New knowledge will be added to the OmniFlo library
+                    as the project continues to grow.
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="wrap footer-row">
+
+
+            <div>
+
+                <strong>
+
+                    OMNIFLO
+
+                </strong>
+
+
+                <div class="note">
+
+                    Make technology useful.
+
+                </div>
+
+            </div>
+
+
+            <div class="note">
+
+                © <span id="year"></span>
+
+                OmniFlo. Built one brick at a time.
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+    <!-- CENTRAL JAVASCRIPT -->
+
+    <script src="../js/script.js"></script>
+
+
+</body>
+
+</html>

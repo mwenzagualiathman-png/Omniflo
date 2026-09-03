@@ -958,45 +958,7 @@
          JAVASCRIPT
     ========================== -->
 
-    <script>
-
-        /* Mobile navigation */
-
-        document.getElementById('menuBtn').onclick = () => {
-
-            document
-                .getElementById('navLinks')
-                .classList
-                .toggle('show');
-
-        };
-
-
-        /* Close mobile navigation after clicking */
-
-        document
-            .querySelectorAll('.links a')
-            .forEach(link => {
-
-                link.onclick = () => {
-
-                    document
-                        .getElementById('navLinks')
-                        .classList
-                        .remove('show');
-
-                };
-
-            });
-
-
-        /* Automatically update the year */
-
-        document
-            .getElementById('year')
-            .textContent = new Date().getFullYear();
-
-    </script>
+    <script src="js/script.js"></script>
 
 
 </body>

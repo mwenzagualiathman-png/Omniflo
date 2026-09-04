@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Resto Cashier is a practical digital system designed to help restaurants manage orders, payments and business records.">
+
+  <title>Resto Cashier | OmniFlo</title>
+
+  <style>
+
+    :root {
+      --navy: #102a43;
+      --deep: #071b2d;
+      --blue: #247ba0;
+      --cream: #f7f4ee;
+      --white: #ffffff;
+      --orange: #e67e22;
+      --gold: #f4b942;
+      --green: #2f855a;
+      --text: #1f2933;
+      --muted: #61758a;
+      --line: #d9e2ec;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--navy);
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: none;
+      font-size: 28px;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(230,126,34,.2), transparent 28%),
+        linear-gradient(135deg, var(--deep), var(--navy));
+      color: white;
+      padding: 100px 0 90px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(54px, 8vw, 100px);
+      line-height: .94;
+      letter-spacing: -3px;
+      margin: 22px 0;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .hero-text {
+      max-width: 650px;
+      color: #d5e3ee;
+      font-size: 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 7px;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary-button {
+      background: var(--orange);
+      color: white;
+    }
+
+    .secondary-button {
+      border: 1px solid rgba(255,255,255,.35);
+      color: white;
+    }
+
+
+    /* APP PREVIEW */
+
+    .app-preview {
+      background: #102f45;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 25px 60px rgba(0,0,0,.3);
+    }
+
+    .app-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #c8d8e3;
+      margin-bottom: 20px;
+    }
+
+    .live {
+      color: #8ee6ac;
+      font-weight: bold;
+    }
+
+    .app-body {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 12px;
+    }
+
+    .app-panel {
+      background: rgba(255,255,255,.08);
+      padding: 16px;
+      border-radius: 9px;
+    }
+
+    .app-panel h4 {
+      margin: 0 0 12px;
+      color: white;
+    }
+
+    .food-item {
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.08);
+      font-size: 12px;
+      color: #dce7ee;
+    }
+
+    .total {
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(230,126,34,.18);
+      border-radius: 8px;
+      color: #ffd9b5;
+    }
+
+
+    /* =========================
+       GENERAL
+    ========================== */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 45px;
+    }
+
+    h2 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: .98;
+      letter-spacing: -2px;
+      color: var(--navy);
+      margin: 15px 0;
+    }
+
+    .intro {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 680px;
+    }
+
+
+    /* =========================
+       PROBLEM
+    ========================== */
+
+    .problem-section {
+      background: white;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .problem-card {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--cream);
+      min-height: 250px;
+    }
+
+    .problem-number {
+      color: var(--orange);
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    .problem-card h3 {
+      color: var(--navy);
+      font-size: 27px;
+      line-height: 1.1;
+      margin: 25px 0 12px;
+    }
+
+    .problem-card p {
+      color: var(--muted);
+    }
+
+
+    /* =========================
+       SOLUTION
+    ========================== */
+
+    .solution-section {
+      background: var(--light, #eaf3f8);
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .solution-text p {
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .feature {
+      padding: 17px 20px;
+      background: white;
+      border-left: 4px solid var(--orange);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .solution-box {
+      padding: 45px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--navy), var(--deep));
+      color: white;
+    }
+
+    .solution-box h3 {
+      font-size: 42px;
+      line-height: 1;
+      margin-top: 20px;
+    }
+
+    .solution-box p {
+      color: #cbdce8;
+    }
+
+
+    /* =========================
+       FEATURES
+    ========================== */
+
+    .features-section {
+      background: var(--cream);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 35px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .feature-card span {
+      color: var(--orange);
+      font-weight: 900;

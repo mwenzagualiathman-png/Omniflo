@@ -6,12 +6,982 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="description"
-        content="Useful technology tools, platforms and resources selected to help people work, learn, create and build more effectively.">
+        content="Useful technology tools, platforms and resources selected by OmniFlo to help people work, learn, create and build more effectively.">
 
   <title>Resources | OmniFlo</title>
 
-  <link rel="stylesheet" href="../css/style.css">
+  <style>
+
+    :root {
+      --navy: #10172A;
+      --text: #253047;
+      --muted: #667085;
+
+      --lavender: #F2F0FA;
+      --lavender-dark: #E7E4F5;
+
+      --blue-soft: #EAF3FA;
+      --teal: #13B8A6;
+      --green: #43D69A;
+
+      --white: #FFFFFF;
+      --border: #E3E6EF;
+
+      --shadow: 0 18px 50px rgba(16, 23, 42, 0.07);
+
+      --radius: 22px;
+    }
+
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: #F8F8FC;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      background: rgba(255,255,255,0.94);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+    }
+
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+    }
+
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal),
+          var(--green)
+        );
+
+      color: white;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+
+    .nav-links a {
+      font-size: 14px;
+      color: #667085;
+      transition: 0.2s ease;
+    }
+
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+
+    .nav-links a.active {
+      position: relative;
+    }
+
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -9px;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 5px;
+    }
+
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 25px;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+
+    .primary-button {
+      background: var(--navy);
+      color: white;
+    }
+
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(16,23,42,0.16);
+    }
+
+
+    .secondary-button {
+      border: 1px solid #CDD3DF;
+      background: white;
+      color: var(--navy);
+    }
+
+
+    .secondary-button:hover {
+      border-color: var(--teal);
+    }
+
+
+    .dark-button {
+      background: white;
+      color: var(--navy);
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .resources-hero {
+      position: relative;
+      overflow: hidden;
+
+      padding: 105px 0 90px;
+
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(67,214,154,0.13),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 15% 70%,
+          rgba(19,184,166,0.10),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          135deg,
+          #F4F2FB,
+          #EEF5FA
+        );
+    }
+
+
+    .resources-hero::before {
+      content: "";
+      position: absolute;
+
+      width: 430px;
+      height: 430px;
+
+      right: -170px;
+      top: -170px;
+
+      border: 1px solid rgba(19,184,166,0.16);
+      border-radius: 50%;
+    }
+
+
+    .page-label,
+    .section-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+
+
+    .resources-hero h1 {
+      max-width: 800px;
+
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 0.98;
+
+      letter-spacing: -0.055em;
+      color: var(--navy);
+
+      margin-bottom: 28px;
+    }
+
+
+    .resources-hero h1 span {
+      display: block;
+      color: #66718A;
+    }
+
+
+    .hero-text {
+      max-width: 680px;
+
+      font-size: 18px;
+      color: #596579;
+      line-height: 1.75;
+
+      margin-bottom: 32px;
+    }
+
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro-section {
+      padding: 95px 0;
+      background: white;
+    }
+
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+
+    .two-column h2,
+    .section-heading h2,
+    .selection-section h2,
+    .affiliate-section h2,
+    .connection-section h2,
+    .final-box h2 {
+      color: var(--navy);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+
+    .intro-copy {
+      max-width: 650px;
+    }
+
+
+    .intro-copy p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+
+    .highlight-text {
+      padding: 22px 24px;
+      border-left: 3px solid var(--teal);
+      background: #F3FBF9;
+      color: var(--navy) !important;
+      font-weight: 700;
+      border-radius: 0 12px 12px 0;
+      margin-top: 28px;
+    }
+
+
+    /* =========================
+       RESOURCE SECTION
+    ========================= */
+
+    .resources-section {
+      padding: 100px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #F4F3FB 0%,
+          #EEF5FA 100%
+        );
+    }
+
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr 0.7fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 50px;
+    }
+
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 470px;
+    }
+
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+
+    .resource-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+
+      min-height: 310px;
+
+      display: flex;
+      flex-direction: column;
+
+      box-shadow: 0 8px 30px rgba(16,23,42,0.035);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: #C9DAD9;
+    }
+
+
+    .resource-number {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: #8993A7;
+      margin-bottom: 22px;
+    }
+
+
+    .resource-icon {
+      width: 48px;
+      height: 48px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+
+      background: #EAF8F5;
+      color: var(--teal);
+
+      font-size: 21px;
+      font-weight: 700;
+
+      margin-bottom: 22px;
+    }
+
+
+    .resource-card h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+
+    .resource-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+
+    .resource-link {
+      margin-top: auto;
+      padding-top: 24px;
+
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+
+    .resource-link:hover {
+      color: var(--navy);
+    }
+
+
+    /* =========================
+       FEATURED RESOURCE
+    ========================= */
+
+    .featured-resource {
+      margin-top: 26px;
+
+      background: var(--navy);
+      color: white;
+
+      border-radius: 26px;
+      padding: 38px;
+
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+
+      overflow: hidden;
+      position: relative;
+    }
+
+
+    .featured-resource::after {
+      content: "";
+
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      right: -120px;
+      top: -130px;
+
+      border: 1px solid rgba(67,214,154,0.25);
+      border-radius: 50%;
+    }
+
+
+    .featured-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+
+    .featured-resource h3 {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+
+    .featured-resource p {
+      color: #B8C0CF;
+      max-width: 620px;
+    }
+
+
+    .featured-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .featured-side strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+
+    .featured-side span {
+      display: block;
+      color: #AEB7C7;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+
+    /* =========================
+       SELECTION
+    ========================= */
+
+    .selection-section {
+      padding: 100px 0;
+      background: white;
+    }
+
+
+    .selection-grid {
+      margin-top: 50px;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      border-top: 1px solid var(--border);
+    }
+
+
+    .selection-item {
+      padding: 30px 25px 10px;
+      border-right: 1px solid var(--border);
+    }
+
+
+    .selection-item:last-child {
+      border-right: 0;
+    }
+
+
+    .selection-item span {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+    }
+
+
+    .selection-item h3 {
+      color: var(--navy);
+      margin: 15px 0 8px;
+      font-size: 19px;
+    }
+
+
+    .selection-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       AFFILIATE
+    ========================= */
+
+    .affiliate-section {
+      padding: 90px 0;
+      background: #F0EEF8;
+    }
+
+
+    .affiliate-box {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+
+    .affiliate-box p {
+      max-width: 680px;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+
+    .affiliate-quote {
+      padding: 35px;
+
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
+      font-size: 21px;
+      line-height: 1.45;
+      font-weight: 700;
+      color: var(--navy);
+
+      box-shadow: 0 12px 35px rgba(16,23,42,0.05);
+    }
+
+
+    /* =========================
+       CONNECTION
+    ========================= */
+
+    .connection-section {
+      padding: 100px 0;
+      background: var(--blue-soft);
+    }
+
+
+    .connection-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 50px;
+      align-items: center;
+    }
+
+
+    .connection-box p {
+      max-width: 680px;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+
+    .connection-action {
+      white-space: nowrap;
+    }
+
+
+    /* =========================
+       FINAL
+    ========================= */
+
+    .final-section {
+      padding: 80px 0;
+      background: white;
+    }
+
+
+    .final-box {
+      background:
+        linear-gradient(
+          135deg,
+          #F0EEF9,
+          #EAF6F5
+        );
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      padding: 60px;
+
+      text-align: center;
+    }
+
+
+    .final-box h2 {
+      max-width: 700px;
+      margin: auto;
+    }
+
+
+    .final-box p {
+      max-width: 650px;
+      margin: 22px auto 30px;
+      color: var(--muted);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 50px 0 25px;
+    }
+
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+
+    footer strong {
+      font-size: 15px;
+      letter-spacing: 0.08em;
+    }
+
+
+    footer p {
+      margin-top: 8px;
+      color: #AEB7C7;
+      font-size: 14px;
+    }
+
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+
+    .footer-links a {
+      color: #C1C8D5;
+      font-size: 13px;
+    }
+
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 35px;
+      padding-top: 20px;
+
+      color: #8993A7;
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
+
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+
+        background: white;
+
+        padding: 20px 5%;
+
+        border-bottom: 1px solid var(--border);
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+
+      .nav-links.show {
+        display: flex;
+      }
+
+
+      .nav-links a.active::after {
+        display: none;
+      }
+
+
+      .menu-button {
+        display: block;
+      }
+
+
+      .resources-hero {
+        padding: 75px 0 65px;
+      }
+
+
+      .resources-hero h1 {
+        font-size: clamp(42px, 13vw, 62px);
+      }
+
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+
+      .two-column,
+      .section-heading,
+      .featured-resource,
+      .affiliate-box,
+      .connection-box {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+
+      .resources-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .selection-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+
+      .selection-item:nth-child(2) {
+        border-right: 0;
+      }
+
+
+      .selection-item {
+        border-bottom: 1px solid var(--border);
+      }
+
+
+      .featured-resource {
+        padding: 30px;
+      }
+
+
+      .final-box {
+        padding: 40px 25px;
+      }
+
+
+      .footer-content {
+        flex-direction: column;
+      }
+
+    }
+
+
+    @media (max-width: 520px) {
+
+      .nav {
+        min-height: 68px;
+      }
+
+
+      .resources-hero {
+        padding: 65px 0 55px;
+      }
+
+
+      .resources-hero h1 {
+        font-size: 43px;
+      }
+
+
+      .resources-hero h1 span {
+        margin-top: 5px;
+      }
+
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+
+      .button {
+        width: 100%;
+      }
+
+
+      .intro-section,
+      .resources-section,
+      .selection-section,
+      .affiliate-section,
+      .connection-section {
+        padding: 70px 0;
+      }
+
+
+      .two-column h2,
+      .section-heading h2,
+      .selection-section h2,
+      .affiliate-section h2,
+      .connection-section h2,
+      .final-box h2 {
+        font-size: 34px;
+      }
+
+
+      .resource-card {
+        min-height: 280px;
+        padding: 26px;
+      }
+
+
+      .selection-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .selection-item,
+      .selection-item:nth-child(2) {
+        border-right: 0;
+      }
+
+
+      .selection-item:last-child {
+        border-bottom: 0;
+      }
+
+
+      .affiliate-quote {
+        padding: 27px;
+        font-size: 19px;
+      }
+
+    }
+
+  </style>
 </head>
+
 
 <body>
 
@@ -22,11 +992,8 @@
     <div class="container nav">
 
       <a href="../index.html" class="brand">
-
         <span class="brand-mark">O</span>
-
         <span>OMNIFLO</span>
-
       </a>
 
 
@@ -45,9 +1012,10 @@
       </nav>
 
 
-      <button class="menu-button"
-              id="menuButton"
-              aria-label="Open navigation">
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open navigation">
 
         ☰
 
@@ -56,6 +1024,7 @@
     </div>
 
   </header>
+
 
 
   <main>
@@ -68,14 +1037,12 @@
       <div class="container">
 
         <div class="page-label">
-          OMNIFLO RESOURCES
+          OMNIFLO RESOURCE LIBRARY
         </div>
 
         <h1>
-
           Useful tools.
           <span>Clear direction.</span>
-
         </h1>
 
         <p class="hero-text">
@@ -83,10 +1050,9 @@
           The internet is full of tools promising to make everything
           easier.
 
-          The difficult question is not whether a tool exists.
+          We are not here to collect everything.
 
-          It is whether that tool is actually useful for the problem
-          you are trying to solve.
+          We are here to find the things that are actually worth knowing.
 
         </p>
 
@@ -115,25 +1081,20 @@
 
 
 
-    <!-- INTRODUCTION -->
+    <!-- PRINCIPLE -->
 
-    <section id="principle"
-             class="intro-section">
+    <section id="principle" class="intro-section">
 
       <div class="container two-column">
 
         <div>
 
           <div class="section-label">
-            OUR PRINCIPLE
+            THE TOOLBOX PRINCIPLE
           </div>
 
           <h2>
-
-            More tools do not
-            automatically mean
-            better work.
-
+            More tools do not automatically mean better work.
           </h2>
 
         </div>
@@ -142,31 +1103,23 @@
         <div class="intro-copy">
 
           <p>
-
             Every week, new applications, AI platforms and digital
             services appear online.
-
           </p>
 
           <p>
-
             Trying to use everything can become another form of
             distraction.
-
           </p>
 
           <p>
-
-            OmniFlo Resources will focus on understanding what a tool
-            does, who it can help and when it is actually worth using.
-
+            OmniFlo Resources focuses on understanding what a tool does,
+            who it can help and when it is actually worth using.
           </p>
 
           <p class="highlight-text">
-
             The best tool is not always the newest tool.
             It is the tool that helps you do the job better.
-
           </p>
 
         </div>
@@ -177,10 +1130,9 @@
 
 
 
-    <!-- RESOURCE CATEGORIES -->
+    <!-- CATEGORIES -->
 
-    <section id="categories"
-             class="resources-section">
+    <section id="categories" class="resources-section">
 
       <div class="container">
 
@@ -193,20 +1145,15 @@
             </div>
 
             <h2>
-
-              Start with what
-              you want to do.
-
+              Start with what you want to do.
             </h2>
 
           </div>
 
 
           <p>
-
-            Resources will be organised around practical needs instead
-            of simply listing popular technology.
-
+            Resources are organised around practical needs instead of
+            simply listing whatever technology happens to be popular.
           </p>
 
         </div>
@@ -233,17 +1180,13 @@
             </h3>
 
             <p>
-
               Tools for writing, research, learning, creativity and
               practical everyday work.
-
             </p>
 
             <a href="#"
                class="resource-link">
-
-              Explore AI Tools →
-
+              Library developing →
             </a>
 
           </article>
@@ -267,17 +1210,13 @@
             </h3>
 
             <p>
-
               Platforms and services that help people build, publish
-              and manage their presence online.
-
+              and improve their presence online.
             </p>
 
-            <a href="#"
+            <a href="#pagespeed"
                class="resource-link">
-
-              Explore Website Tools →
-
+              See featured tool →
             </a>
 
           </article>
@@ -301,17 +1240,13 @@
             </h3>
 
             <p>
-
               Tools and systems that help organise work, manage time
               and reduce unnecessary repetition.
-
             </p>
 
             <a href="#"
                class="resource-link">
-
-              Explore Productivity →
-
+              Library developing →
             </a>
 
           </article>
@@ -335,17 +1270,13 @@
             </h3>
 
             <p>
-
               Resources for design, writing, images, video and other
               forms of digital creativity.
-
             </p>
 
             <a href="#"
                class="resource-link">
-
-              Explore Creative Tools →
-
+              Library developing →
             </a>
 
           </article>
@@ -369,17 +1300,13 @@
             </h3>
 
             <p>
-
               Useful places to learn practical skills and develop
               knowledge that can be applied in the real world.
-
             </p>
 
             <a href="#"
                class="resource-link">
-
-              Explore Learning →
-
+              Library developing →
             </a>
 
           </article>
@@ -388,7 +1315,7 @@
 
           <!-- FUTURE -->
 
-          <article class="resource-card future-card">
+          <article class="resource-card">
 
             <div class="resource-number">
               NEXT
@@ -403,15 +1330,61 @@
             </h3>
 
             <p>
-
-              Technology keeps changing.
-
-              When we discover something genuinely useful, this library
-              will continue to grow.
-
+              When we discover something genuinely useful, the library
+              will continue to grow carefully.
             </p>
 
           </article>
+
+        </div>
+
+
+
+        <!-- FEATURED RESOURCE -->
+
+        <div id="pagespeed" class="featured-resource">
+
+          <div>
+
+            <div class="featured-label">
+              FEATURED RESOURCE · FREE
+            </div>
+
+            <h3>
+              Google PageSpeed Insights
+            </h3>
+
+            <p>
+              A practical starting point for anyone who owns or builds
+              a website. Enter a webpage and check how it performs,
+              including its experience across devices.
+            </p>
+
+          </div>
+
+
+          <div class="featured-side">
+
+            <strong>
+              Why we picked it
+            </strong>
+
+            <span>
+              Because a useful website should not only look good.
+              It should perform well too.
+            </span>
+
+            <a
+              href="https://pagespeed.web.dev/"
+              target="_blank"
+              rel="noopener"
+              class="button dark-button">
+
+              Open PageSpeed Insights ↗
+
+            </a>
+
+          </div>
 
         </div>
 
@@ -421,7 +1394,7 @@
 
 
 
-    <!-- HOW OMNIFLO CHOOSES -->
+    <!-- SELECTION -->
 
     <section class="selection-section">
 
@@ -432,10 +1405,7 @@
         </div>
 
         <h2>
-
-          What makes a
-          resource worth knowing?
-
+          What makes a resource worth knowing?
         </h2>
 
 
@@ -444,18 +1414,14 @@
 
           <div class="selection-item">
 
-            <span>
-              01
-            </span>
+            <span>01</span>
 
             <h3>
               Useful
             </h3>
 
             <p>
-
               Does it genuinely help someone complete a useful task?
-
             </p>
 
           </div>
@@ -463,19 +1429,15 @@
 
           <div class="selection-item">
 
-            <span>
-              02
-            </span>
+            <span>02</span>
 
             <h3>
               Understandable
             </h3>
 
             <p>
-
               Can an ordinary person learn how to use it without
               unnecessary complexity?
-
             </p>
 
           </div>
@@ -483,18 +1445,14 @@
 
           <div class="selection-item">
 
-            <span>
-              03
-            </span>
+            <span>03</span>
 
             <h3>
               Worth the Cost
             </h3>
 
             <p>
-
               Does the value justify the time or money required?
-
             </p>
 
           </div>
@@ -502,19 +1460,15 @@
 
           <div class="selection-item">
 
-            <span>
-              04
-            </span>
+            <span>04</span>
 
             <h3>
               Honest
             </h3>
 
             <p>
-
               We should be able to explain both where a tool helps
               and where it may not be the right choice.
-
             </p>
 
           </div>
@@ -527,7 +1481,7 @@
 
 
 
-    <!-- FUTURE AFFILIATE PRINCIPLE -->
+    <!-- AFFILIATE PRINCIPLE -->
 
     <section class="affiliate-section">
 
@@ -540,37 +1494,29 @@
           </div>
 
           <h2>
-
-            Recommendations
-            should help people
-            first.
-
+            Recommendations should help people first.
           </h2>
 
           <p>
-
             Some useful resources may eventually include affiliate
             partnerships.
-
-            When that happens, OmniFlo should remain clear and honest
-            about those relationships.
-
           </p>
 
           <p>
+            When that happens, OmniFlo will remain clear and honest
+            about those relationships.
+          </p>
 
+          <p>
             A commission should never be the reason a tool is
             recommended.
-
           </p>
 
         </div>
 
 
         <div class="affiliate-quote">
-
           “Trust takes longer to build than a list of links.”
-
         </div>
 
       </div>
@@ -592,15 +1538,10 @@
           </div>
 
           <h2>
-
-            A tool becomes more
-            useful when you know
-            how to use it.
-
+            A tool becomes more useful when you know how to use it.
           </h2>
 
           <p>
-
             That is why OmniFlo connects useful resources with
             practical knowledge.
 
@@ -609,7 +1550,6 @@
             Resources introduce useful tools.
 
             Together, they help people move from curiosity to action.
-
           </p>
 
         </div>
@@ -617,8 +1557,9 @@
 
         <div class="connection-action">
 
-          <a href="../articles/index.html"
-             class="button primary-button">
+          <a
+            href="../articles/index.html"
+            class="button primary-button">
 
             Explore Articles →
 
@@ -632,7 +1573,7 @@
 
 
 
-    <!-- FINAL CTA -->
+    <!-- FINAL -->
 
     <section class="final-section">
 
@@ -645,24 +1586,19 @@
           </div>
 
           <h2>
-
-            We are collecting
-            useful things—not
-            everything.
-
+            We are collecting useful things—not everything.
           </h2>
 
           <p>
-
             The Resource Library will grow carefully.
 
             Every category, tool and recommendation should have a
             reason for being here.
-
           </p>
 
-          <a href="../index.html"
-             class="button dark-button">
+          <a
+            href="../index.html"
+            class="button primary-button">
 
             Return to OmniFlo →
 
@@ -730,9 +1666,38 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
 
-  <script src="../js/script.js"></script>
+  <script>
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+
+    menuButton.addEventListener("click", () => {
+
+      navLinks.classList.toggle("show");
+
+    });
+
+
+    navLinks.querySelectorAll("a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        navLinks.classList.remove("show");
+
+      });
+
+    });
+
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
 
 </body>
-  </html>
+</html>

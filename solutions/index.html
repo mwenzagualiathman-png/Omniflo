@@ -12,15 +12,864 @@
   <title>Solutions | OmniFlo</title>
 
   <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+
+    /* =========================================================
+       OMNIFLO SOLUTIONS
+       ROOM IDENTITY: THE WORKSHOP
+    ========================================================= */
+
+    :root {
+      --workshop-navy: #0b1220;
+      --workshop-navy-2: #111c2f;
+      --workshop-blue: #1d3557;
+      --workshop-cyan: #12b8c4;
+      --workshop-green: #39d98a;
+
+      --workshop-bg: #f1f5f9;
+      --workshop-soft: #e8eef7;
+      --workshop-white: #ffffff;
+
+      --workshop-text: #0b1220;
+      --workshop-muted: #617083;
+      --workshop-border: #dbe3ec;
+
+      --workshop-radius: 22px;
+      --workshop-shadow: 0 18px 50px rgba(11, 18, 32, 0.08);
+    }
+
+
+    /* =========================================================
+       GLOBAL ROOM
+    ========================================================= */
+
+    .solutions-room {
+      background: var(--workshop-bg);
+      color: var(--workshop-text);
+      overflow: hidden;
+    }
+
+    .solutions-room * {
+      box-sizing: border-box;
+    }
+
+    .solutions-room .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+
+    /* =========================================================
+       HEADER POLISH
+    ========================================================= */
+
+    .solutions-room-header {
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--workshop-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+    }
+
+    .solutions-room-header .nav {
+      min-height: 76px;
+    }
+
+    .solutions-room-header .brand-mark {
+      background:
+        conic-gradient(
+          from 210deg,
+          var(--workshop-cyan),
+          var(--workshop-green),
+          var(--workshop-cyan)
+        );
+      color: transparent;
+    }
+
+    .solutions-room-header .nav-links a.active {
+      color: var(--workshop-cyan);
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       HERO — WORKSHOP
+    ========================================================= */
+
+    .solutions-hero {
+      position: relative;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(18,184,196,0.18),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 15% 90%,
+          rgba(57,217,138,0.10),
+          transparent 30%
+        ),
+        var(--workshop-navy);
+      color: white;
+      isolation: isolate;
+    }
+
+    /* technical grid */
+    .solutions-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.07) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.07) 1px,
+          transparent 1px
+        );
+      background-size: 44px 44px;
+    }
+
+    .solutions-hero::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      right: -130px;
+      top: 80px;
+      border: 1px solid rgba(18,184,196,0.28);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 45px rgba(18,184,196,0.035),
+        0 0 0 90px rgba(18,184,196,0.025);
+      z-index: -1;
+    }
+
+    .solutions-hero .container {
+      padding: 92px 0 100px;
+      position: relative;
+    }
+
+    .solutions-hero .page-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #9deef2;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      margin-bottom: 24px;
+    }
+
+    .solutions-hero .page-label::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--workshop-cyan);
+    }
+
+    .solutions-hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      font-weight: 800;
+    }
+
+    .solutions-hero h1 span {
+      display: block;
+      color: #8ce9d3;
+    }
+
+    .solutions-hero .hero-text {
+      max-width: 650px;
+      margin: 32px 0 0;
+      color: #b9c6d6;
+      font-size: 1.12rem;
+      line-height: 1.8;
+    }
+
+    .solutions-hero .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .solutions-hero .button {
+      text-decoration: none;
+    }
+
+    .solutions-hero .primary-button {
+      background: var(--workshop-cyan);
+      color: var(--workshop-navy);
+      border: 1px solid var(--workshop-cyan);
+      font-weight: 800;
+    }
+
+    .solutions-hero .primary-button:hover {
+      background: #39d4dc;
+    }
+
+    .solutions-hero .secondary-button {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.05);
+    }
+
+
+    /* =========================================================
+       INTRODUCTION
+    ========================================================= */
+
+    .solutions-room .intro-section {
+      background: var(--workshop-white);
+      padding: 110px 0;
+    }
+
+    .solutions-room .two-column {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .solutions-room .section-label {
+      color: #708095;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.17em;
+      margin-bottom: 18px;
+    }
+
+    .solutions-room h2 {
+      margin: 0;
+      font-size: clamp(2.25rem, 4vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .solutions-room .intro-copy {
+      border-left: 2px solid var(--workshop-cyan);
+      padding-left: 34px;
+    }
+
+    .solutions-room .intro-copy p {
+      margin: 0 0 22px;
+      color: var(--workshop-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .solutions-room .intro-copy p:first-child {
+      color: var(--workshop-text);
+      font-size: 1.4rem;
+      font-weight: 750;
+    }
+
+    .solutions-room .highlight-text {
+      color: var(--workshop-text) !important;
+      font-weight: 750;
+      padding-top: 12px;
+    }
+
+
+    /* =========================================================
+       SOLUTIONS SECTION
+    ========================================================= */
+
+    .solutions-section {
+      padding: 110px 0 120px;
+      background:
+        linear-gradient(
+          180deg,
+          var(--workshop-soft),
+          var(--workshop-bg)
+        );
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr 0.75fr;
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 55px;
+    }
+
+    .section-heading > p {
+      margin: 0;
+      color: var(--workshop-muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .solution-card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--workshop-border);
+      border-radius: var(--workshop-radius);
+      padding: 30px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--workshop-shadow);
+      border-color: rgba(18,184,196,0.45);
+    }
+
+    .solution-number {
+      position: absolute;
+      top: 25px;
+      right: 28px;
+      color: #9aa8b8;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .solution-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #e7f8f7;
+      color: #087f88;
+      font-size: 1.35rem;
+      margin-bottom: 30px;
+    }
+
+    .solution-card:nth-child(2) .solution-icon {
+      background: #e8eef7;
+      color: #244c78;
+    }
+
+    .solution-card:nth-child(3) .solution-icon {
+      background: #eaf7ef;
+      color: #167b4d;
+    }
+
+    .solution-card:nth-child(4) .solution-icon {
+      background: #eef0fa;
+      color: #4e568c;
+    }
+
+    .solution-card:nth-child(5) .solution-icon {
+      background: #e7f8f7;
+      color: #087f88;
+    }
+
+    .solution-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+      letter-spacing: -0.025em;
+    }
+
+    .solution-card p {
+      margin: 0;
+      color: var(--workshop-muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .solution-link {
+      margin-top: auto;
+      padding-top: 26px;
+      color: #087f88;
+      text-decoration: none;
+      font-weight: 750;
+      font-size: 0.9rem;
+    }
+
+    .solution-link:hover {
+      color: var(--workshop-navy);
+    }
+
+    .future-card {
+      background:
+        linear-gradient(
+          135deg,
+          var(--workshop-navy),
+          var(--workshop-navy-2)
+        );
+      border-color: transparent;
+      color: white;
+    }
+
+    .future-card .solution-number {
+      color: #7e91a8;
+    }
+
+    .future-card .solution-icon {
+      background: rgba(18,184,196,0.13);
+      color: #75e5e8;
+    }
+
+    .future-card p {
+      color: #aebccc;
+    }
+
+    .future-card .solution-link {
+      color: #75e5e8;
+    }
+
+
+    /* =========================================================
+       PROCESS
+    ========================================================= */
+
+    .process-section {
+      background: var(--workshop-navy);
+      color: white;
+      padding: 115px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-section::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: -280px;
+      bottom: -280px;
+      border: 1px solid rgba(57,217,138,0.18);
+      border-radius: 50%;
+    }
+
+    .process-section .section-label {
+      color: #78dfe3;
+    }
+
+    .process-section h2 {
+      max-width: 700px;
+      margin-bottom: 60px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .process-step {
+      padding: 32px 28px 20px 0;
+      margin-right: 28px;
+      border-right: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .process-step:last-child {
+      border-right: 0;
+      margin-right: 0;
+    }
+
+    .process-step span {
+      display: inline-block;
+      color: #71e1cf;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin-bottom: 38px;
+    }
+
+    .process-step h3 {
+      font-size: 1.35rem;
+      margin: 0 0 12px;
+    }
+
+    .process-step p {
+      color: #aab8c8;
+      font-size: 0.94rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+
+    /* =========================================================
+       CONNECTION TO PRODUCT
+    ========================================================= */
+
+    .connection-section {
+      padding: 100px 0;
+      background: #e8eef7;
+    }
+
+    .connection-box {
+      background: white;
+      border-radius: 28px;
+      padding: 55px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 50px;
+      align-items: center;
+      border: 1px solid var(--workshop-border);
+      box-shadow: var(--workshop-shadow);
+    }
+
+    .connection-box h2 {
+      max-width: 650px;
+    }
+
+    .connection-box p {
+      max-width: 700px;
+      color: var(--workshop-muted);
+      line-height: 1.8;
+      margin: 24px 0 0;
+    }
+
+    .connection-action {
+      white-space: nowrap;
+    }
+
+    .connection-action .primary-button {
+      background: var(--workshop-navy);
+      color: white;
+      border: 1px solid var(--workshop-navy);
+    }
+
+    .connection-action .primary-button:hover {
+      background: var(--workshop-cyan);
+      color: var(--workshop-navy);
+      border-color: var(--workshop-cyan);
+    }
+
+
+    /* =========================================================
+       FINAL CTA
+    ========================================================= */
+
+    .final-section {
+      padding: 110px 0;
+      background: var(--workshop-bg);
+    }
+
+    .final-box {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(18,184,196,0.20),
+          transparent 35%
+        ),
+        var(--workshop-navy);
+      color: white;
+      border-radius: 30px;
+      padding: 70px;
+    }
+
+    .final-box::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -90px;
+      bottom: -100px;
+      border: 1px solid rgba(57,217,138,0.25);
+      border-radius: 50%;
+    }
+
+    .final-box .section-label {
+      color: #79e0d5;
+    }
+
+    .final-box h2 {
+      max-width: 680px;
+      font-size: clamp(2.5rem, 5vw, 4.7rem);
+    }
+
+    .final-box p {
+      max-width: 650px;
+      color: #b4c1d0;
+      line-height: 1.8;
+      margin: 25px 0 35px;
+    }
+
+    .final-box .dark-button {
+      background: white;
+      color: var(--workshop-navy);
+      border: 1px solid white;
+      font-weight: 800;
+    }
+
+    .final-box .dark-button:hover {
+      background: var(--workshop-cyan);
+      border-color: var(--workshop-cyan);
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .solutions-room-footer {
+      background: #070d17;
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .solutions-room-footer .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      padding-bottom: 35px;
+    }
+
+    .solutions-room-footer strong {
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+    }
+
+    .solutions-room-footer p {
+      color: #91a0b2;
+      margin: 10px 0 0;
+    }
+
+    .solutions-room-footer .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    .solutions-room-footer .footer-links a {
+      color: #aebccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .solutions-room-footer .footer-links a:hover {
+      color: var(--workshop-cyan);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 22px;
+      color: #667589;
+      font-size: 0.8rem;
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .solutions-room .container {
+        width: min(100% - 32px, 680px);
+      }
+
+      .solutions-hero {
+        min-height: auto;
+      }
+
+      .solutions-hero .container {
+        padding: 70px 0 75px;
+      }
+
+      .solutions-hero h1 {
+        font-size: clamp(3rem, 13vw, 4.2rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        max-width: 100%;
+      }
+
+      .solutions-hero .hero-text {
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-top: 25px;
+      }
+
+      .solutions-hero .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .solutions-hero .button {
+        text-align: center;
+      }
+
+      .solutions-room .intro-section,
+      .solutions-section,
+      .process-section,
+      .connection-section,
+      .final-section {
+        padding: 75px 0;
+      }
+
+      .solutions-room .two-column,
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .solutions-room h2 {
+        font-size: clamp(2.15rem, 9vw, 3.1rem);
+        line-height: 1.04;
+      }
+
+      .solutions-room .intro-copy {
+        padding-left: 22px;
+      }
+
+      .solutions-room .intro-copy p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      .solutions-room .intro-copy p:first-child {
+        font-size: 1.2rem;
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .solution-card {
+        min-height: 0;
+        padding: 26px;
+      }
+
+      .solution-icon {
+        margin-bottom: 22px;
+      }
+
+      .solution-card h3 {
+        font-size: 1.25rem;
+      }
+
+      .solution-link {
+        padding-top: 24px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+        border-top: 0;
+      }
+
+      .process-step {
+        padding: 26px 0;
+        margin: 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.13);
+      }
+
+      .process-step:last-child {
+        border-bottom: 0;
+      }
+
+      .process-step span {
+        margin-bottom: 18px;
+      }
+
+      .connection-box {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 32px 25px;
+        border-radius: 22px;
+      }
+
+      .connection-action {
+        white-space: normal;
+      }
+
+      .connection-action .button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .final-box {
+        padding: 42px 26px;
+        border-radius: 24px;
+      }
+
+      .final-box h2 {
+        font-size: clamp(2.4rem, 10vw, 3.5rem);
+        line-height: 1.03;
+      }
+
+      .solutions-room-footer .footer-content {
+        flex-direction: column;
+      }
+
+      .solutions-room-footer .footer-links {
+        gap: 16px;
+      }
+    }
+
+
+    /* =========================================================
+       SMALL PHONES
+    ========================================================= */
+
+    @media (max-width: 420px) {
+
+      .solutions-room .container {
+        width: calc(100% - 28px);
+      }
+
+      .solutions-hero .container {
+        padding-top: 58px;
+        padding-bottom: 65px;
+      }
+
+      .solutions-hero h1 {
+        font-size: 2.9rem;
+      }
+
+      .solutions-hero .hero-text {
+        font-size: 0.96rem;
+      }
+
+      .solutions-room h2 {
+        font-size: 2.15rem;
+      }
+
+      .solution-card {
+        padding: 23px;
+      }
+
+      .final-box {
+        padding: 36px 23px;
+      }
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-  <!-- =========================
+  <!-- =======================================================
        HEADER
-  ========================== -->
+  ======================================================== -->
 
-  <header class="site-header">
+  <header class="site-header solutions-room-header">
+
     <div class="container nav">
 
       <a href="../index.html" class="brand">
@@ -42,23 +891,28 @@
 
       </nav>
 
-      <button class="menu-button"
-              id="menuButton"
-              aria-label="Open navigation">
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open navigation"
+        type="button">
 
         ☰
 
       </button>
 
     </div>
+
   </header>
 
 
-  <main>
 
-    <!-- =========================
+  <main class="solutions-room">
+
+
+    <!-- =====================================================
          HERO
-    ========================== -->
+    ====================================================== -->
 
     <section class="solutions-hero">
 
@@ -74,26 +928,25 @@
         </h1>
 
         <p class="hero-text">
-
           Technology should not create more confusion.
-
-          OmniFlo looks at practical problems faced by people and
-          businesses and explores useful ways to make work simpler,
-          faster and easier to manage.
-
+          OmniFlo looks at practical problems faced by people
+          and businesses and explores useful ways to make work
+          simpler, faster and easier to manage.
         </p>
 
         <div class="hero-actions">
 
-          <a href="#solutions"
-             class="button primary-button">
+          <a
+            href="#solutions"
+            class="button primary-button">
 
             Explore Solutions ↓
 
           </a>
 
-          <a href="#how-it-works"
-             class="button secondary-button">
+          <a
+            href="#how-it-works"
+            class="button secondary-button">
 
             How We Work
 
@@ -107,9 +960,9 @@
 
 
 
-    <!-- =========================
-         INTRODUCTION
-    ========================== -->
+    <!-- =====================================================
+         THE IDEA
+    ====================================================== -->
 
     <section class="intro-section">
 
@@ -132,31 +985,23 @@
         <div class="intro-copy">
 
           <p>
-
             We begin with the problem.
-
           </p>
 
           <p>
-
             A business may be wasting hours on repetitive work.
             Important records may be difficult to find.
             Customers may struggle to access information.
-
           </p>
 
           <p>
-
             Sometimes the best solution is a website.
             Sometimes it is a digital system.
             Sometimes it is a completely new product.
-
           </p>
 
           <p class="highlight-text">
-
             The tool comes after we understand the problem.
-
           </p>
 
         </div>
@@ -167,12 +1012,13 @@
 
 
 
-    <!-- =========================
-         SOLUTIONS
-    ========================== -->
+    <!-- =====================================================
+         SOLUTIONS GRID
+    ====================================================== -->
 
-    <section id="solutions"
-             class="solutions-section">
+    <section
+      id="solutions"
+      class="solutions-section">
 
       <div class="container">
 
@@ -192,11 +1038,9 @@
           </div>
 
           <p>
-
             These are the areas OmniFlo is building around.
-            Each solution can eventually grow into its own specialised
-            service or digital system.
-
+            Each solution can eventually grow into its own
+            specialised service or digital system.
           </p>
 
         </div>
@@ -205,20 +1049,14 @@
         <div class="solutions-grid">
 
 
-          <!-- WEBSITE SOLUTIONS -->
-
           <article class="solution-card">
 
             <div class="solution-number">
-
               01
-
             </div>
 
             <div class="solution-icon">
-
               ◈
-
             </div>
 
             <h3>
@@ -226,37 +1064,27 @@
             </h3>
 
             <p>
-
-              Clear and modern websites for businesses, projects
-              and ideas that need a professional place online.
-
+              Clear and modern websites for businesses,
+              projects and ideas that need a professional
+              place online.
             </p>
 
-            <a href="#"
-               class="solution-link">
-
+            <a href="#" class="solution-link">
               Explore this solution →
-
             </a>
 
           </article>
 
 
 
-          <!-- DIGITAL SYSTEMS -->
-
           <article class="solution-card">
 
             <div class="solution-number">
-
               02
-
             </div>
 
             <div class="solution-icon">
-
               ⚙
-
             </div>
 
             <h3>
@@ -264,37 +1092,27 @@
             </h3>
 
             <p>
-
-              Practical systems designed to reduce repetitive work,
-              organise information and make everyday operations easier.
-
+              Practical systems designed to reduce repetitive
+              work, organise information and make everyday
+              operations easier.
             </p>
 
-            <a href="#"
-               class="solution-link">
-
+            <a href="#" class="solution-link">
               Explore this solution →
-
             </a>
 
           </article>
 
 
 
-          <!-- BUSINESS SOLUTIONS -->
-
           <article class="solution-card">
 
             <div class="solution-number">
-
               03
-
             </div>
 
             <div class="solution-icon">
-
               ◇
-
             </div>
 
             <h3>
@@ -302,37 +1120,27 @@
             </h3>
 
             <p>
-
               We explore everyday business problems and identify
-              practical ways technology can improve the way work is done.
-
+              practical ways technology can improve the way
+              work is done.
             </p>
 
-            <a href="#"
-               class="solution-link">
-
+            <a href="#" class="solution-link">
               Explore this solution →
-
             </a>
 
           </article>
 
 
 
-          <!-- CONTENT -->
-
           <article class="solution-card">
 
             <div class="solution-number">
-
               04
-
             </div>
 
             <div class="solution-icon">
-
               ✦
-
             </div>
 
             <h3>
@@ -340,37 +1148,26 @@
             </h3>
 
             <p>
-
               Useful digital content, guides and professional
               materials created to communicate ideas clearly.
-
             </p>
 
-            <a href="#"
-               class="solution-link">
-
+            <a href="#" class="solution-link">
               Explore this solution →
-
             </a>
 
           </article>
 
 
 
-          <!-- AUTOMATION -->
-
           <article class="solution-card">
 
             <div class="solution-number">
-
               05
-
             </div>
 
             <div class="solution-icon">
-
               ↻
-
             </div>
 
             <h3>
@@ -378,37 +1175,26 @@
             </h3>
 
             <p>
-
-              Finding tasks that consume unnecessary time and exploring
-              better systems for getting the work done.
-
+              Finding tasks that consume unnecessary time and
+              exploring better systems for getting the work done.
             </p>
 
-            <a href="#"
-               class="solution-link">
-
+            <a href="#" class="solution-link">
               Explore this solution →
-
             </a>
 
           </article>
 
 
 
-          <!-- FUTURE -->
-
           <article class="solution-card future-card">
 
             <div class="solution-number">
-
               NEXT
-
             </div>
 
             <div class="solution-icon">
-
               +
-
             </div>
 
             <h3>
@@ -416,11 +1202,9 @@
             </h3>
 
             <p>
-
-              OmniFlo will continue looking for real problems worth
-              solving. The next useful solution may begin with a simple
-              observation.
-
+              OmniFlo will continue looking for real problems
+              worth solving. The next useful solution may begin
+              with a simple observation.
             </p>
 
           </article>
@@ -433,12 +1217,13 @@
 
 
 
-    <!-- =========================
-         HOW WE WORK
-    ========================== -->
+    <!-- =====================================================
+         HOW WE THINK
+    ====================================================== -->
 
-    <section id="how-it-works"
-             class="process-section">
+    <section
+      id="how-it-works"
+      class="process-section">
 
       <div class="container">
 
@@ -463,10 +1248,8 @@
             </h3>
 
             <p>
-
               We pay attention to problems people have become
               so used to that they no longer question them.
-
             </p>
 
           </div>
@@ -481,10 +1264,8 @@
             </h3>
 
             <p>
-
               Before building anything, we try to understand
               what is actually causing the problem.
-
             </p>
 
           </div>
@@ -499,10 +1280,8 @@
             </h3>
 
             <p>
-
               We explore the simplest useful system,
               product or digital solution.
-
             </p>
 
           </div>
@@ -517,10 +1296,8 @@
             </h3>
 
             <p>
-
               A good solution continues to learn from the
               people who actually use it.
-
             </p>
 
           </div>
@@ -533,46 +1310,50 @@
 
 
 
-    <!-- =========================
-         CONNECTION
-    ========================== -->
+    <!-- =====================================================
+         PROBLEM → PRODUCT
+    ====================================================== -->
 
     <section class="connection-section">
 
-      <div class="container connection-box">
+      <div class="container">
 
-        <div>
+        <div class="connection-box">
 
-          <div class="section-label">
-            FROM PROBLEM TO PRODUCT
+          <div>
+
+            <div class="section-label">
+              FROM PROBLEM TO PRODUCT
+            </div>
+
+            <h2>
+              Some solutions
+              become products.
+            </h2>
+
+            <p>
+              Resto Cashier began with a simple observation:
+              many restaurants still depend entirely on physical
+              books for important records.
+
+              A problem seen in the real world became a
+              digital product.
+            </p>
+
           </div>
 
-          <h2>
-            Some solutions
-            become products.
-          </h2>
 
-          <p>
+          <div class="connection-action">
 
-            Resto Cashier began with a simple observation:
-            many restaurants still depend entirely on physical books
-            for important records.
+            <a
+              href="../products/resto-cashier/index.html"
+              class="button primary-button">
 
-            A problem seen in the real world became a digital product.
+              See Resto Cashier →
 
-          </p>
+            </a>
 
-        </div>
-
-
-        <div class="connection-action">
-
-          <a href="../products/resto-cashier/index.html"
-             class="button primary-button">
-
-            See Resto Cashier →
-
-          </a>
+          </div>
 
         </div>
 
@@ -582,9 +1363,9 @@
 
 
 
-    <!-- =========================
-         CALL TO ACTION
-    ========================== -->
+    <!-- =====================================================
+         FINAL CTA
+    ====================================================== -->
 
     <section class="final-section">
 
@@ -593,31 +1374,26 @@
         <div class="final-box">
 
           <div class="section-label">
-
             THE JOURNEY CONTINUES
-
           </div>
 
           <h2>
-
             The next useful
             idea may already
             be around us.
-
           </h2>
 
           <p>
+            OmniFlo is not interested in building technology
+            simply because technology is possible.
 
-            OmniFlo is not interested in building technology simply
-            because technology is possible.
-
-            We are interested in finding what makes life and work
-            genuinely easier.
-
+            We are interested in finding what makes life and
+            work genuinely easier.
           </p>
 
-          <a href="../products/index.html"
-             class="button dark-button">
+          <a
+            href="../products/index.html"
+            class="button dark-button">
 
             Explore Our Products →
 
@@ -633,29 +1409,97 @@
 
 
 
-  <!-- =========================
+  <!-- =======================================================
        FOOTER
-  ========================== -->
+  ======================================================== -->
 
-  <footer>
+  <footer class="solutions-room-footer">
 
-    <div class="container footer-content">
+    <div class="container">
 
-      <div>
+      <div class="footer-content">
 
-        <strong>OMNIFLO</strong>
+        <div>
 
-        <p>
-          Make technology useful.
-        </p>
+          <strong>OMNIFLO</strong>
+
+          <p>
+            Make technology useful.
+          </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="../index.html">
+            Home
+          </a>
+
+          <a href="../articles/index.html">
+            Learn
+          </a>
+
+          <a href="index.html">
+            Solutions
+          </a>
+
+          <a href="../products/index.html">
+            Products
+          </a>
+
+          <a href="../resources/index.html">
+            Resources
+          </a>
+
+        </div>
 
       </div>
 
 
-      <div class="footer-links">
+      <div class="footer-bottom">
 
-        <a href="../index.html">
-          Home
-        </a>
+        © 2026 OmniFlo. Ideas • Tools • Real Impact.
 
-        <a href="../
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =======================================================
+       MOBILE MENU
+  ======================================================== -->
+
+  <script>
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    if (menuButton && navLinks) {
+
+      menuButton.addEventListener("click", () => {
+
+        navLinks.classList.toggle("open");
+
+      });
+
+
+      navLinks.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          navLinks.classList.remove("open");
+
+        });
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>

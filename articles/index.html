@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -101,36 +101,18 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
 
-            font-weight: 850;
-            letter-spacing: -0.4px;
+            flex-shrink: 0;
         }
 
 
-        .mark {
-            width: 37px;
-            height: 37px;
+        .brand-logo {
+            width: 150px;
+            height: auto;
 
-            display: grid;
-            place-items: center;
+            display: block;
 
-            border-radius: 50%;
-
-            background:
-                conic-gradient(
-                    from 40deg,
-                    #12b8c4,
-                    #39d98a,
-                    #12b8c4,
-                    #10231d
-                );
-
-            color: white;
-            font-size: 0.85rem;
-
-            box-shadow:
-                0 7px 18px rgba(21, 156, 139, 0.18);
+            object-fit: contain;
         }
 
 
@@ -593,6 +575,27 @@
         }
 
 
+        .footer-brand {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .footer-logo {
+            width: 145px;
+            height: auto;
+
+            display: block;
+
+            object-fit: contain;
+        }
+
+
+        .footer-tagline {
+            margin-top: 5px;
+        }
+
+
         footer strong {
             color: white;
         }
@@ -673,6 +676,16 @@
 
         @media (max-width: 560px) {
 
+            .brand-logo {
+                width: 125px;
+            }
+
+
+            .footer-logo {
+                width: 135px;
+            }
+
+
             .hero {
                 padding: 68px 0 62px;
             }
@@ -730,11 +743,13 @@
 
         <div class="wrap nav">
 
-            <a href="../index.html" class="brand">
+            <a href="../index.html" class="brand" aria-label="OmniFlo home">
 
-                <span class="mark">O</span>
-
-                <span>OMNIFLO</span>
+                <img
+                    src="../assets/brand/omniflo-logo.png"
+                    alt="OmniFlo — Ideas • Tools • Real Impact"
+                    class="brand-logo"
+                >
 
             </a>
 
@@ -742,7 +757,8 @@
             <button
                 class="menu"
                 id="menuBtn"
-                aria-label="Open navigation">
+                aria-label="Open navigation"
+                aria-expanded="false">
 
                 ☰
 
@@ -1133,13 +1149,17 @@
 
         <div class="wrap footer-row">
 
-            <div>
+            <div class="footer-brand">
 
-                <strong>OMNIFLO</strong>
+                <a href="../index.html" aria-label="OmniFlo home">
 
-                <div>
-                    Ideas • Tools • Real Impact
-                </div>
+                    <img
+                        src="../assets/brand/omniflo-logo.png"
+                        alt="OmniFlo — Ideas • Tools • Real Impact"
+                        class="footer-logo"
+                    >
+
+                </a>
 
             </div>
 
@@ -1167,7 +1187,13 @@
 
         menuBtn.addEventListener("click", () => {
 
-            navLinks.classList.toggle("active");
+            const isOpen =
+                navLinks.classList.toggle("active");
+
+            menuBtn.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
 
         });
 

@@ -26,16 +26,11 @@
     <div class="container nav-wrap">
 
       <a href="index.html" class="brand" aria-label="OmniFlo home">
-        <div class="brand-mark" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <div class="brand-text">
-          <strong>omniflo</strong>
-          <small>Ideas • Tools • Real Impact</small>
-        </div>
+        <img
+          src="assets/brand/omniflo-logo.png"
+          alt="OmniFlo — Ideas • Tools • Real Impact"
+          class="brand-logo"
+        >
       </a>
 
       <nav class="desktop-nav" aria-label="Main navigation">
@@ -667,16 +662,11 @@
 
         <div class="about-mark">
 
-          <div class="about-symbol">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          <div>
-            <strong>omniflo</strong>
-            <small>Ideas • Tools • Real Impact</small>
-          </div>
+          <img
+            src="assets/brand/omniflo-logo.png"
+            alt="OmniFlo — Ideas • Tools • Real Impact"
+            class="brand-logo"
+          >
 
         </div>
 
@@ -763,16 +753,11 @@
 
         <a href="index.html" class="brand footer-brand-link">
 
-          <div class="brand-mark" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          <div class="brand-text">
-            <strong>omniflo</strong>
-            <small>Ideas • Tools • Real Impact</small>
-          </div>
+          <img
+            src="assets/brand/omniflo-logo.png"
+            alt="OmniFlo — Ideas • Tools • Real Impact"
+            class="brand-logo"
+          >
 
         </a>
 
@@ -831,7 +816,10 @@
     menuToggle.addEventListener("click", () => {
       const open = mobileNav.classList.toggle("open");
 
-      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      menuToggle.setAttribute(
+        "aria-expanded",
+        open ? "true" : "false"
+      );
     });
 
     document.querySelectorAll(".mobile-nav a").forEach(link => {
@@ -843,4 +831,4 @@
   </script>
 
 </body>
-  </html>
+</html>

@@ -1,0 +1,129 @@
+backend:
+  name: github
+  repo: mwenzagualiathman-png/Omniflo
+  branch: main
+  base_url: https://omniflo-cms-auth.mwenzagualiathman.workers.dev
+  auth_endpoint: auth
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+site_url: https://omniflo.solutions
+
+collections:
+
+  - name: "articles"
+    label: "Articles"
+    folder: "content/articles"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Article Content"
+        name: "body"
+        widget: "markdown"
+
+
+  - name: "products"
+    label: "Products"
+    folder: "content/products"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+
+    fields:
+      - label: "Product Name"
+        name: "title"
+        widget: "string"
+
+      - label: "Short Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Price"
+        name: "price"
+        widget: "string"
+        required: false
+
+      - label: "Product Image"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Product Details"
+        name: "body"
+        widget: "markdown"
+
+
+  - name: "solutions"
+    label: "Solutions"
+    folder: "content/solutions"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+
+    fields:
+      - label: "Solution Name"
+        name: "title"
+        widget: "string"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Solution Image"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Solution Details"
+        name: "body"
+        widget: "markdown"
+
+
+  - name: "resources"
+    label: "Resources"
+    folder: "content/resources"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+
+    fields:
+      - label: "Resource Name"
+        name: "title"
+        widget: "string"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Resource Link"
+        name: "link"
+        widget: "string"
+
+      - label: "Resource Image"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Resource Details"
+        name: "body"
+        widget: "markdown"

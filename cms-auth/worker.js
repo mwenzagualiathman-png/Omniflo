@@ -22,8 +22,7 @@ function getOAuthUrl(url, env) {
 
   return (
     "https://github.com/login/oauth/authorize" +
-    `?response_type=code` +
-    `&client_id=${encodeURIComponent(env.GITHUB_OAUTH_ID)}` +
+    `?client_id=${encodeURIComponent(env.GITHUB_OAUTH_ID)}` +
     `&redirect_uri=${encodeURIComponent(callbackUrl)}` +
     `&scope=${encodeURIComponent(scope)}` +
     `&state=${encodeURIComponent(state)}`
@@ -50,16 +49,17 @@ async function exchangeCode(url, env) {
     "https://github.com/login/oauth/access_token",
     {
       method: "POST",
+
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
+
       body: JSON.stringify({
         client_id: env.GITHUB_OAUTH_ID,
         client_secret: env.GITHUB_OAUTH_SECRET,
         code: code,
-        redirect_uri: callbackUrl,
-        grant_type: "authorization_code"
+        redirect_uri: callbackUrl
       })
     }
   );
@@ -76,17 +76,25 @@ async function exchangeCode(url, env) {
   return new Response(
     `
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <title>OmniFlo CMS Authorization</title>
+
 </head>
 
 <body>
-  <p>Authorizing OmniFlo CMS...</p>
+
+  <p>Authorizing Decap...</p>
 
   <script>
-    const receiveMessage = (message) => {
+
+    const receiveMessage = () => {
+
       window.opener.postMessage(
         "authorization:github:success:" +
         JSON.stringify({
@@ -100,6 +108,7 @@ async function exchangeCode(url, env) {
         receiveMessage,
         false
       );
+
     };
 
     window.addEventListener(
@@ -112,8 +121,11 @@ async function exchangeCode(url, env) {
       "authorizing:github",
       "*"
     );
+
   </script>
+
 </body>
+
 </html>
 `,
     {
@@ -125,32 +137,45 @@ async function exchangeCode(url, env) {
 }
 
 export default {
+
   async fetch(request, env) {
+
     const url = new URL(request.url);
 
     if (url.pathname === "/auth") {
-      const authorizationUrl = getOAuthUrl(url, env);
+
+      const authorizationUrl =
+        getOAuthUrl(url, env);
 
       if (!authorizationUrl) {
+
         return new Response(
           "Invalid provider",
           { status: 400 }
         );
+
       }
 
       return Response.redirect(
         authorizationUrl,
-        302
+        301
       );
+
     }
 
     if (url.pathname === "/callback") {
-      return exchangeCode(url, env);
+
+      return exchangeCode(
+        url,
+        env
+      );
+
     }
 
     return new Response(
       "OmniFlo CMS Authentication Worker is running."
     );
+
   }
+
 };
-// OmniFlo CMS authentication worker

@@ -1,0 +1,30 @@
+name: OmniFlo Build Test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/**"
+      - "content/**"
+      - "package.json"
+      - "package-lock.json"
+      - "netlify.toml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout OmniFlo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build OmniFlo content
+        run: npm run build

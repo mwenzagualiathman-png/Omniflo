@@ -28,3 +28,20 @@ jobs:
 
       - name: Build OmniFlo content
         run: npm run build
+      - name: Save OmniFlo build
+        uses: actions/upload-artifact@v4
+        with:
+          name: omniflo-build-test
+          path: |
+            articles
+            products
+            solutions
+            resources
+            assets
+            index.html
+            css
+            js
+            admin
+            package.json
+            netlify.toml
+          retention-days: 1

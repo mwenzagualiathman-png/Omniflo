@@ -45,6 +45,12 @@ const CMS_END =
   "<!-- OMNIFLO CMS END -->";
 
 
+/*
+=========================================================
+HELPERS
+=========================================================
+*/
+
 function escapeHtml(value = "") {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -130,6 +136,28 @@ function imageUrl(value = "") {
 }
 
 
+function formatDate(value = "") {
+  if (!value) {
+    return "";
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return new Intl.DateTimeFormat(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }
+  ).format(date);
+}
+
+
 function loadManifest() {
   if (!fs.existsSync(manifestPath)) {
     return [];
@@ -171,10 +199,13 @@ function removeEmptyDirectories(dir) {
 
   const entries = fs.readdirSync(
     dir,
-    { withFileTypes: true }
+    {
+      withFileTypes: true
+    }
   );
 
   for (const entry of entries) {
+
     const fullPath =
       path.join(
         dir,
@@ -182,6 +213,7 @@ function removeEmptyDirectories(dir) {
       );
 
     if (entry.isDirectory()) {
+
       removeEmptyDirectories(
         fullPath
       );
@@ -191,7 +223,9 @@ function removeEmptyDirectories(dir) {
           fullPath
         );
 
-      if (remaining.length === 0) {
+      if (
+        remaining.length === 0
+      ) {
         fs.rmdirSync(
           fullPath
         );
@@ -202,44 +236,92 @@ function removeEmptyDirectories(dir) {
 
 
 function cleanPreviousPages() {
+
   const previous =
     loadManifest();
 
-  previous.forEach(relativePath => {
-    const fullPath =
-      path.join(
-        root,
-        relativePath
-      );
+  previous.forEach(
+    relativePath => {
 
-    if (
-      fs.existsSync(fullPath) &&
-      fs.statSync(fullPath).isFile()
-    ) {
-      fs.unlinkSync(fullPath);
+      const fullPath =
+        path.join(
+          root,
+          relativePath
+        );
+
+      if (
+        fs.existsSync(fullPath) &&
+        fs.statSync(fullPath).isFile()
+      ) {
+        fs.unlinkSync(fullPath);
+      }
+
     }
-  });
+  );
+
 
   collections.forEach(
     collection => {
+
       removeEmptyDirectories(
         path.join(
           root,
           collection.output
         )
       );
+
     }
   );
 }
 
+
+/*
+=========================================================
+ARTICLE SEO
+=========================================================
+*/
+
+function getArticleSeoTitle({
+  title,
+  seoTitle
+}) {
+  return (
+    seoTitle ||
+    `${title} — OmniFlo`
+  );
+}
+
+
+function getArticleSeoDescription({
+  description,
+  seoDescription
+}) {
+  return (
+    seoDescription ||
+    description ||
+    ""
+  );
+}
+
+
+/*
+=========================================================
+PAGE RENDERER
+=========================================================
+*/
 
 function renderPage({
   title,
   description,
   body,
   collection,
-  image
+  image,
+  category,
+  date,
+  seoTitle,
+  seoDescription
 }) {
+
   const homePrefix = "../../";
 
   const safeTitle =
@@ -250,6 +332,42 @@ function renderPage({
 
   const safeImage =
     imageUrl(image);
+
+  const articleSeoTitle =
+    getArticleSeoTitle({
+      title,
+      seoTitle
+    });
+
+  const articleSeoDescription =
+    getArticleSeoDescription({
+      description,
+      seoDescription
+    });
+
+  const safeSeoTitle =
+    escapeHtml(
+      articleSeoTitle
+    );
+
+  const safeSeoDescription =
+    escapeHtml(
+      articleSeoDescription
+    );
+
+  const safeCategory =
+    escapeHtml(
+      category || ""
+    );
+
+  const displayDate =
+    formatDate(date);
+
+  const safeDate =
+    escapeHtml(
+      displayDate
+    );
+
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -265,7 +383,7 @@ function renderPage({
 
   <meta
     name="description"
-    content="${safeDescription}"
+    content="${safeSeoDescription}"
   >
 
   <meta
@@ -275,12 +393,12 @@ function renderPage({
 
   <meta
     property="og:title"
-    content="${safeTitle} — OmniFlo"
+    content="${safeSeoTitle}"
   >
 
   <meta
     property="og:description"
-    content="${safeDescription}"
+    content="${safeSeoDescription}"
   >
 
   ${
@@ -293,7 +411,7 @@ function renderPage({
   }
 
   <title>
-    ${safeTitle} — OmniFlo
+    ${safeSeoTitle}
   </title>
 
   <style>
@@ -396,6 +514,24 @@ function renderPage({
 
       letter-spacing: 2px;
       text-transform: uppercase;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+
+      margin-bottom: 24px;
+
+      color: var(--muted);
+
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .article-category {
+      color: var(--teal);
+      font-weight: 800;
     }
 
     h1 {
@@ -606,6 +742,31 @@ function renderPage({
         OMNIFLO ${escapeHtml(collection)}
       </div>
 
+      ${
+        collection === "articles" &&
+        (safeCategory || safeDate)
+          ? `<div class="article-meta">
+
+              ${
+                safeCategory
+                  ? `<span class="article-category">
+                      ${safeCategory}
+                    </span>`
+                  : ""
+              }
+
+              ${
+                safeDate
+                  ? `<span>
+                      Published ${safeDate}
+                    </span>`
+                  : ""
+              }
+
+            </div>`
+          : ""
+      }
+
       <h1>
         ${safeTitle}
       </h1>
@@ -690,6 +851,7 @@ function cardMarkup({
   price,
   link
 }) {
+
   const safeTitle =
     escapeHtml(title);
 
@@ -777,7 +939,6 @@ function cardMarkup({
 /*
 =========================================================
 ARTICLE LIBRARY CARD
-Matches the existing Knowledge Room design
 =========================================================
 */
 
@@ -785,8 +946,11 @@ function articleCardMarkup({
   title,
   description,
   slug,
-  image
+  image,
+  category,
+  date
 }) {
+
   const safeTitle =
     escapeHtml(title);
 
@@ -796,8 +960,22 @@ function articleCardMarkup({
   const safeImage =
     imageUrl(image);
 
+  const safeCategory =
+    escapeHtml(
+      category ||
+      "OMNIFLO ARTICLE"
+    );
+
+  const displayDate =
+    formatDate(date);
+
+  const safeDate =
+    escapeHtml(
+      displayDate
+    );
+
   const publicPath =
-    `/${"articles"}/${slug}/`;
+    `/articles/${slug}/`;
 
   return `
     <a
@@ -816,7 +994,7 @@ function articleCardMarkup({
       }
 
       <div class="category">
-        OMNIFLO ARTICLE
+        ${safeCategory}
       </div>
 
       <h3>
@@ -826,6 +1004,14 @@ function articleCardMarkup({
       ${
         safeDescription
           ? `<p>${safeDescription}</p>`
+          : ""
+      }
+
+      ${
+        safeDate
+          ? `<div class="omniflo-cms-article-date">
+              ${safeDate}
+            </div>`
           : ""
       }
 
@@ -841,11 +1027,11 @@ function articleCardMarkup({
 /*
 =========================================================
 ROOM STYLES
-Used by Products, Solutions and Resources
 =========================================================
 */
 
 function roomStyles() {
+
   return `
 <style>
 
@@ -970,13 +1156,6 @@ function roomStyles() {
   color: #65736d;
 }
 
-
-/*
-=========================================================
-ARTICLE CARD ENHANCEMENTS
-=========================================================
-*/
-
 .omniflo-cms-article-card {
   position: relative;
 }
@@ -990,6 +1169,12 @@ ARTICLE CARD ENHANCEMENTS
   border-radius: 20px 20px 0 0;
 }
 
+.omniflo-cms-article-date {
+  color: #65736d;
+  font-size: .78rem;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
 
 @media (max-width: 600px) {
 
@@ -1034,7 +1219,9 @@ function buildCollection(collection) {
       collection.output
     );
 
-  ensureDir(destinationDir);
+  ensureDir(
+    destinationDir
+  );
 
   const files =
     getMarkdownFiles(
@@ -1097,6 +1284,7 @@ function buildCollection(collection) {
 
     const page =
       renderPage({
+
         title:
           parsed.data.title,
 
@@ -1112,7 +1300,24 @@ function buildCollection(collection) {
 
         image:
           parsed.data.image ||
+          "",
+
+        category:
+          parsed.data.category ||
+          "",
+
+        date:
+          parsed.data.date ||
+          "",
+
+        seoTitle:
+          parsed.data.seo_title ||
+          "",
+
+        seoDescription:
+          parsed.data.seo_description ||
           ""
+
       });
 
 
@@ -1123,7 +1328,9 @@ function buildCollection(collection) {
       );
 
 
-    ensureDir(itemDir);
+    ensureDir(
+      itemDir
+    );
 
 
     const outputFile =
@@ -1152,6 +1359,22 @@ function buildCollection(collection) {
 
       image:
         parsed.data.image ||
+        "",
+
+      category:
+        parsed.data.category ||
+        "",
+
+      date:
+        parsed.data.date ||
+        "",
+
+      seoTitle:
+        parsed.data.seo_title ||
+        "",
+
+      seoDescription:
+        parsed.data.seo_description ||
         "",
 
       price:
@@ -1221,8 +1444,6 @@ function updateRoomIndex(
   /*
   =======================================================
   ARTICLES
-  Insert CMS articles directly into the existing
-  Knowledge Room library grid.
   =======================================================
   */
 
@@ -1247,11 +1468,6 @@ function updateRoomIndex(
         cmsArticleEnd
       );
 
-
-    /*
-    Remove a previous generated article block
-    if one exists.
-    */
 
     if (
       existingStart !== -1 &&
@@ -1281,6 +1497,7 @@ function updateRoomIndex(
         entries
           .map(entry =>
             articleCardMarkup({
+
               title:
                 entry.title,
 
@@ -1291,7 +1508,14 @@ function updateRoomIndex(
                 entry.slug,
 
               image:
-                entry.image
+                entry.image,
+
+              category:
+                entry.category,
+
+              date:
+                entry.date
+
             })
           )
           .join("\n");
@@ -1338,11 +1562,6 @@ ${cmsArticleEnd}
           );
 
 
-        /*
-        Add the small amount of CMS styling
-        needed for article images.
-        */
-
         const styleBlock = `
 <style>
 
@@ -1357,6 +1576,13 @@ ${cmsArticleEnd}
   object-fit: cover;
   margin: -28px -28px 25px;
   border-radius: 20px 20px 0 0;
+}
+
+.omniflo-cms-article-date {
+  color: #65736d;
+  font-size: .78rem;
+  margin-top: 4px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 560px) {
@@ -1423,10 +1649,8 @@ ${cmsArticleEnd}
   /*
   =======================================================
   PRODUCTS / SOLUTIONS / RESOURCES
-  Keep existing CMS room behaviour.
   =======================================================
   */
-
 
   const existingStart =
     html.indexOf(
@@ -1462,7 +1686,7 @@ ${cmsArticleEnd}
   }
 
 
-  let section = `
+  const section = `
 
 ${CMS_START}
 

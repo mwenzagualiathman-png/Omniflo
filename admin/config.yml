@@ -2,7 +2,7 @@ backend:
   name: github
   repo: mwenzagualiathman-png/Omniflo
   branch: main
-  base_url: https://omniflo-cms-auth.mwenzagualiathman.workers.dev
+  base_url: https://omniflo-cms-auth.mwenzagualiiathman.workers.dev
   auth_endpoint: auth
 
 media_folder: "assets/images"
@@ -11,6 +11,10 @@ public_folder: "/assets/images"
 site_url: https://omniflo.solutions
 
 collections:
+
+  # =========================================
+  # ARTICLES
+  # =========================================
 
   - name: "articles"
     label: "Articles"
@@ -21,6 +25,7 @@ collections:
     slug: "{{slug}}"
 
     fields:
+
       - label: "Title"
         name: "title"
         widget: "string"
@@ -29,15 +34,49 @@ collections:
         name: "description"
         widget: "text"
 
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Artificial Intelligence"
+          - "Technology"
+          - "Digital Skills"
+          - "Websites"
+          - "Automation"
+          - "Online Opportunities"
+          - "Business"
+          - "Other"
+        default: "Technology"
+
       - label: "Featured Image"
         name: "image"
         widget: "image"
+        required: false
+
+      - label: "Published Date"
+        name: "date"
+        widget: "datetime"
+        default: ""
+        required: false
+
+      - label: "SEO Title"
+        name: "seo_title"
+        widget: "string"
+        required: false
+
+      - label: "SEO Description"
+        name: "seo_description"
+        widget: "text"
         required: false
 
       - label: "Article Content"
         name: "body"
         widget: "markdown"
 
+
+  # =========================================
+  # PRODUCTS
+  # =========================================
 
   - name: "products"
     label: "Products"
@@ -48,6 +87,7 @@ collections:
     slug: "{{slug}}"
 
     fields:
+
       - label: "Product Name"
         name: "title"
         widget: "string"
@@ -71,6 +111,10 @@ collections:
         widget: "markdown"
 
 
+  # =========================================
+  # SOLUTIONS
+  # =========================================
+
   - name: "solutions"
     label: "Solutions"
     folder: "content/solutions"
@@ -80,6 +124,7 @@ collections:
     slug: "{{slug}}"
 
     fields:
+
       - label: "Solution Name"
         name: "title"
         widget: "string"
@@ -98,6 +143,10 @@ collections:
         widget: "markdown"
 
 
+  # =========================================
+  # RESOURCES
+  # =========================================
+
   - name: "resources"
     label: "Resources"
     folder: "content/resources"
@@ -107,6 +156,7 @@ collections:
     slug: "{{slug}}"
 
     fields:
+
       - label: "Resource Name"
         name: "title"
         widget: "string"

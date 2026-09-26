@@ -5,7 +5,10 @@ const { marked } = require("marked");
 
 const root = process.cwd();
 
-const contentRoot = path.join(root, "content");
+const contentRoot = path.join(
+  root,
+  "content"
+);
 
 const manifestPath = path.join(
   root,
@@ -671,6 +674,13 @@ function renderPage({
 }
 
 
+/*
+=========================================================
+STANDARD CMS CARD
+Used by Products, Solutions and Resources
+=========================================================
+*/
+
 function cardMarkup({
   collection,
   title,
@@ -763,6 +773,77 @@ function cardMarkup({
   `;
 }
 
+
+/*
+=========================================================
+ARTICLE LIBRARY CARD
+Matches the existing Knowledge Room design
+=========================================================
+*/
+
+function articleCardMarkup({
+  title,
+  description,
+  slug,
+  image
+}) {
+  const safeTitle =
+    escapeHtml(title);
+
+  const safeDescription =
+    escapeHtml(description);
+
+  const safeImage =
+    imageUrl(image);
+
+  const publicPath =
+    `/${"articles"}/${slug}/`;
+
+  return `
+    <a
+      class="article-card omniflo-cms-article-card"
+      href="${publicPath}"
+    >
+
+      ${
+        safeImage
+          ? `<img
+              src="${escapeHtml(safeImage)}"
+              alt="${safeTitle}"
+              class="omniflo-cms-article-image"
+            >`
+          : ""
+      }
+
+      <div class="category">
+        OMNIFLO ARTICLE
+      </div>
+
+      <h3>
+        ${safeTitle}
+      </h3>
+
+      ${
+        safeDescription
+          ? `<p>${safeDescription}</p>`
+          : ""
+      }
+
+      <div class="article-link">
+        Read article →
+      </div>
+
+    </a>
+  `;
+}
+
+
+/*
+=========================================================
+ROOM STYLES
+Used by Products, Solutions and Resources
+=========================================================
+*/
 
 function roomStyles() {
   return `
@@ -889,6 +970,27 @@ function roomStyles() {
   color: #65736d;
 }
 
+
+/*
+=========================================================
+ARTICLE CARD ENHANCEMENTS
+=========================================================
+*/
+
+.omniflo-cms-article-card {
+  position: relative;
+}
+
+.omniflo-cms-article-image {
+  display: block;
+  width: calc(100% + 56px);
+  height: 170px;
+  object-fit: cover;
+  margin: -28px -28px 25px;
+  border-radius: 20px 20px 0 0;
+}
+
+
 @media (max-width: 600px) {
 
   .omniflo-cms-room {
@@ -900,6 +1002,11 @@ function roomStyles() {
     grid-template-columns: 1fr;
   }
 
+  .omniflo-cms-article-image {
+    width: calc(100% + 50px);
+    margin: -25px -25px 25px;
+  }
+
 }
 
 </style>
@@ -907,7 +1014,14 @@ function roomStyles() {
 }
 
 
+/*
+=========================================================
+BUILD COLLECTION
+=========================================================
+*/
+
 function buildCollection(collection) {
+
   const sourceDir =
     path.join(
       contentRoot,
@@ -929,6 +1043,7 @@ function buildCollection(collection) {
 
   const entries = [];
 
+
   files.forEach(file => {
 
     const sourcePath =
@@ -946,6 +1061,7 @@ function buildCollection(collection) {
     const parsed =
       matter(raw);
 
+
     if (!parsed.data.title) {
 
       console.log(
@@ -955,11 +1071,13 @@ function buildCollection(collection) {
       return;
     }
 
+
     const slug =
       parsed.data.slug ||
       slugify(
         parsed.data.title
       );
+
 
     if (!slug) {
 
@@ -970,10 +1088,12 @@ function buildCollection(collection) {
       return;
     }
 
+
     const htmlBody =
       marked.parse(
         parsed.content
       );
+
 
     const page =
       renderPage({
@@ -995,13 +1115,16 @@ function buildCollection(collection) {
           ""
       });
 
+
     const itemDir =
       path.join(
         destinationDir,
         slug
       );
 
+
     ensureDir(itemDir);
+
 
     const outputFile =
       path.join(
@@ -1009,12 +1132,15 @@ function buildCollection(collection) {
         "index.html"
       );
 
+
     fs.writeFileSync(
       outputFile,
       page
     );
 
+
     entries.push({
+
       title:
         parsed.data.title,
 
@@ -1035,32 +1161,45 @@ function buildCollection(collection) {
       link:
         parsed.data.link ||
         ""
+
     });
+
 
     console.log(
       `Built ${collection.name}/${slug}`
     );
+
   });
+
 
   updateRoomIndex(
     collection,
     entries
   );
 
+
   return entries;
 }
 
+
+/*
+=========================================================
+UPDATE ROOM INDEX
+=========================================================
+*/
 
 function updateRoomIndex(
   collection,
   entries
 ) {
+
   const indexPath =
     path.join(
       root,
       collection.output,
       "index.html"
     );
+
 
   if (!fs.existsSync(indexPath)) {
 
@@ -1071,11 +1210,223 @@ function updateRoomIndex(
     return;
   }
 
+
   let html =
     fs.readFileSync(
       indexPath,
       "utf8"
     );
+
+
+  /*
+  =======================================================
+  ARTICLES
+  Insert CMS articles directly into the existing
+  Knowledge Room library grid.
+  =======================================================
+  */
+
+  if (
+    collection.name === "articles"
+  ) {
+
+    const cmsArticleStart =
+      "<!-- OMNIFLO CMS ARTICLES START -->";
+
+    const cmsArticleEnd =
+      "<!-- OMNIFLO CMS ARTICLES END -->";
+
+
+    const existingStart =
+      html.indexOf(
+        cmsArticleStart
+      );
+
+    const existingEnd =
+      html.indexOf(
+        cmsArticleEnd
+      );
+
+
+    /*
+    Remove a previous generated article block
+    if one exists.
+    */
+
+    if (
+      existingStart !== -1 &&
+      existingEnd !== -1 &&
+      existingEnd > existingStart
+    ) {
+
+      const endPosition =
+        existingEnd +
+        cmsArticleEnd.length;
+
+      html =
+        html.slice(
+          0,
+          existingStart
+        ) +
+        html.slice(
+          endPosition
+        );
+
+    }
+
+
+    if (entries.length) {
+
+      const articleCards =
+        entries
+          .map(entry =>
+            articleCardMarkup({
+              title:
+                entry.title,
+
+              description:
+                entry.description,
+
+              slug:
+                entry.slug,
+
+              image:
+                entry.image
+            })
+          )
+          .join("\n");
+
+
+      const articleBlock = `
+
+${cmsArticleStart}
+
+${articleCards}
+
+${cmsArticleEnd}
+
+`;
+
+
+      const libraryGridMarker =
+        '<div class="library-grid">';
+
+
+      const markerPosition =
+        html.indexOf(
+          libraryGridMarker
+        );
+
+
+      if (
+        markerPosition !== -1
+      ) {
+
+        const insertPosition =
+          markerPosition +
+          libraryGridMarker.length;
+
+
+        html =
+          html.slice(
+            0,
+            insertPosition
+          ) +
+          articleBlock +
+          html.slice(
+            insertPosition
+          );
+
+
+        /*
+        Add the small amount of CMS styling
+        needed for article images.
+        */
+
+        const styleBlock = `
+<style>
+
+.omniflo-cms-article-card {
+  position: relative;
+}
+
+.omniflo-cms-article-image {
+  display: block;
+  width: calc(100% + 56px);
+  height: 170px;
+  object-fit: cover;
+  margin: -28px -28px 25px;
+  border-radius: 20px 20px 0 0;
+}
+
+@media (max-width: 560px) {
+
+  .omniflo-cms-article-image {
+    width: calc(100% + 50px);
+    margin: -25px -25px 25px;
+  }
+
+}
+
+</style>
+`;
+
+
+        const headClose =
+          html.indexOf(
+            "</head>"
+          );
+
+
+        if (
+          headClose !== -1
+        ) {
+
+          html =
+            html.slice(
+              0,
+              headClose
+            ) +
+            styleBlock +
+            html.slice(
+              headClose
+            );
+
+        }
+
+      } else {
+
+        console.log(
+          "Articles library grid not found. CMS articles were not inserted."
+        );
+
+      }
+
+    }
+
+
+    fs.writeFileSync(
+      indexPath,
+      html
+    );
+
+
+    console.log(
+      "Updated articles/index.html"
+    );
+
+
+    return;
+  }
+
+
+  /*
+  =======================================================
+  PRODUCTS / SOLUTIONS / RESOURCES
+  Keep existing CMS room behaviour.
+  =======================================================
+  */
+
 
   const existingStart =
     html.indexOf(
@@ -1087,6 +1438,7 @@ function updateRoomIndex(
       CMS_END
     );
 
+
   if (
     existingStart !== -1 &&
     existingEnd !== -1 &&
@@ -1097,6 +1449,7 @@ function updateRoomIndex(
       existingEnd +
       CMS_END.length;
 
+
     html =
       html.slice(
         0,
@@ -1105,7 +1458,9 @@ function updateRoomIndex(
       html.slice(
         endPosition
       );
+
   }
+
 
   let section = `
 
@@ -1118,7 +1473,10 @@ ${roomStyles()}
   <div class="omniflo-cms-room-heading">
 
     <div class="omniflo-cms-room-eyebrow">
-      OMNIFLO ${escapeHtml(collection.title)}
+
+      OMNIFLO
+      ${escapeHtml(collection.title)}
+
     </div>
 
     <h2>
@@ -1131,12 +1489,16 @@ ${roomStyles()}
 
   </div>
 
+
   ${
     entries.length
+
       ? `<div class="omniflo-cms-grid">
+
           ${entries
             .map(entry =>
               cardMarkup({
+
                 collection:
                   collection.name,
 
@@ -1157,15 +1519,22 @@ ${roomStyles()}
 
                 link:
                   entry.link
+
               })
             )
             .join("")}
+
         </div>`
+
       : `<div class="omniflo-cms-empty">
-          No published ${escapeHtml(collection.name)}
+
+          No published
+          ${escapeHtml(collection.name)}
           yet.
+
         </div>`
   }
+
 
 </section>
 
@@ -1173,12 +1542,16 @@ ${CMS_END}
 
 `;
 
+
   const mainClose =
     html.lastIndexOf(
       "</main>"
     );
 
-  if (mainClose !== -1) {
+
+  if (
+    mainClose !== -1
+  ) {
 
     html =
       html.slice(
@@ -1193,18 +1566,27 @@ ${CMS_END}
   } else {
 
     html += section;
+
   }
+
 
   fs.writeFileSync(
     indexPath,
     html
   );
 
+
   console.log(
     `Updated ${collection.output}/index.html`
   );
 }
 
+
+/*
+=========================================================
+START BUILD
+=========================================================
+*/
 
 console.log(
   "Starting OmniFlo content build..."
@@ -1225,17 +1607,26 @@ collections.forEach(
         collection
       );
 
-    entries.forEach(entry => {
 
-      newManifest.push(
-        path.join(
-          collection.output,
-          entry.slug,
-          "index.html"
-        )
-      );
+    entries.forEach(
+      entry => {
 
-    });
+        newManifest.push(
+
+          path.join(
+
+            collection.output,
+
+            entry.slug,
+
+            "index.html"
+
+          )
+
+        );
+
+      }
+    );
 
   }
 );

@@ -2,7 +2,7 @@ backend:
   name: github
   repo: mwenzagualiathman-png/Omniflo
   branch: main
-  base_url: https://omniflo-cms-auth.mwenzagualiiathman.workers.dev
+  base_url: https://omniflo-cms-auth.mwenzagualiathman.workers.dev
   auth_endpoint: auth
 
 media_folder: "assets/images"

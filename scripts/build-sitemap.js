@@ -20,6 +20,14 @@ function walk(dir, urlPath) {
     }
   }
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    // Also list single-file pages such as articles/my-page.html
+    if (entry.isFile() && entry.name.endsWith('.html') && urlPath !== '/' &&
+        !['index.html', '404.html'].includes(entry.name)) {
+      const h = fs.readFileSync(path.join(dir, entry.name), 'utf8');
+      if (!/<meta[^>]+name=["']robots["'][^>]+noindex/i.test(h)) {
+        pages.push(urlPath + entry.name.replace(/\.html$/, ''));
+      }
+    }
     if (!entry.isDirectory() || SKIP.has(entry.name) || entry.name.startsWith('.')) continue;
     walk(path.join(dir, entry.name), urlPath + entry.name + '/');
   }

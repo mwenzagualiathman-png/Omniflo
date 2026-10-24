@@ -1,16 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="Resto Cashier is a practical digital system designed to help restaurants manage orders, payments and business records.">
-
-  <title>Resto Cashier | OmniFlo</title>
+  <meta name="description" content="Discover Resto Cashier by OmniFlo, a practical restaurant cashier tool for recording orders, calculating bills, tracking payment statuses and printing receipts. Try the interactive demo.">
+  <meta name="theme-color" content="#102a43">
+  <title>Resto Cashier | Restaurant Cashier Tool | OmniFlo</title>
 
   <style>
-
     :root {
       --navy: #102a43;
       --deep: #071b2d;
@@ -20,18 +18,17 @@
       --orange: #e67e22;
       --gold: #f4b942;
       --green: #2f855a;
-      --text: #1f2933;
+      --text: #263746;
       --muted: #61758a;
       --line: #d9e2ec;
-      --max: 1180px;
+      --max: 1160px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -42,357 +39,749 @@
       line-height: 1.65;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; }
 
     .container {
-      width: min(var(--max), calc(100% - 40px));
+      width: min(var(--max), calc(100% - 36px));
       margin: auto;
     }
-
-
-    /* =========================
-       HEADER
-    ========================== */
 
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.96);
-      backdrop-filter: blur(12px);
+      z-index: 10;
+      background: rgba(255,255,255,.97);
       border-bottom: 1px solid var(--line);
     }
 
     .navbar {
-      min-height: 76px;
+      min-height: 72px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
+      color: var(--navy);
       font-size: 19px;
       font-weight: 900;
-      letter-spacing: 3px;
-      color: var(--navy);
+      letter-spacing: 1.5px;
+      white-space: nowrap;
     }
 
     .logo-mark {
-      width: 42px;
-      height: 42px;
+      width: 39px;
+      height: 39px;
       display: grid;
       place-items: center;
-      border-radius: 50%;
+      border-radius: 12px;
       background: linear-gradient(135deg, var(--navy), var(--blue));
       color: white;
       letter-spacing: 0;
     }
 
+    .brand span { color: var(--orange); }
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
-      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 20px;
       font-size: 14px;
       font-weight: 700;
     }
 
-    .nav-links a:hover {
-      color: var(--orange);
-    }
-
-    .menu-button {
-      display: none;
-      border: 0;
-      background: none;
-      font-size: 28px;
-      color: var(--navy);
-      cursor: pointer;
-    }
-
-
-    /* =========================
-       HERO
-    ========================== */
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--orange); }
 
     .hero {
-      background:
-        radial-gradient(circle at 85% 20%, rgba(230,126,34,.2), transparent 28%),
-        linear-gradient(135deg, var(--deep), var(--navy));
+      padding: 80px 0;
       color: white;
-      padding: 100px 0 90px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(230,126,34,.22), transparent 30%),
+        linear-gradient(135deg, var(--deep), var(--navy));
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.1fr .9fr;
-      gap: 60px;
       align-items: center;
+      gap: 55px;
     }
 
     .eyebrow {
       color: var(--gold);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 3px;
       text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 12px;
+      font-weight: 800;
     }
 
     h1 {
-      font-size: clamp(54px, 8vw, 100px);
-      line-height: .94;
-      letter-spacing: -3px;
-      margin: 22px 0;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      margin: 20px 0;
     }
 
-    h1 span {
-      color: var(--gold);
-    }
+    h1 span { color: var(--gold); }
 
     .hero-text {
-      max-width: 650px;
-      color: #d5e3ee;
-      font-size: 20px;
+      color: #d7e3ed;
+      font-size: 18px;
+      max-width: 600px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 35px;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .button {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 7px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 20px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: 800;
-      transition: .2s;
+      text-align: center;
+      transition: transform .2s, background .2s;
     }
 
-    .button:hover {
-      transform: translateY(-3px);
-    }
+    .button:hover { transform: translateY(-2px); }
 
     .primary-button {
       background: var(--orange);
       color: white;
     }
 
+    .primary-button:hover { background: #cc6814; }
+
     .secondary-button {
-      border: 1px solid rgba(255,255,255,.35);
       color: white;
+      border: 1px solid rgba(255,255,255,.45);
     }
 
+    .secondary-button:hover { background: rgba(255,255,255,.1); }
 
-    /* APP PREVIEW */
+    .hero-note {
+      margin-top: 17px;
+      font-size: 12px;
+      color: #c7d6e3;
+    }
 
     .app-preview {
-      background: #102f45;
+      padding: 22px;
+      border-radius: 18px;
+      background: #12344d;
       border: 1px solid rgba(255,255,255,.15);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 25px 60px rgba(0,0,0,.3);
+      box-shadow: 0 25px 60px rgba(0,0,0,.25);
     }
 
     .app-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      gap: 10px;
+      color: #d2e0eb;
       font-size: 12px;
-      color: #c8d8e3;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .live {
-      color: #8ee6ac;
-      font-weight: bold;
-    }
-
-    .app-body {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 12px;
+    .demo-label {
+      color: #a7edbe;
+      font-weight: 800;
     }
 
     .app-panel {
-      background: rgba(255,255,255,.08);
-      padding: 16px;
-      border-radius: 9px;
+      padding: 17px;
+      background: rgba(255,255,255,.07);
+      border-radius: 11px;
     }
 
-    .app-panel h4 {
-      margin: 0 0 12px;
+    .app-panel h3 {
       color: white;
+      margin: 0 0 14px;
+      font-size: 17px;
     }
 
-    .food-item {
-      padding: 10px;
-      margin-bottom: 8px;
-      border-radius: 6px;
-      background: rgba(255,255,255,.08);
-      font-size: 12px;
-      color: #dce7ee;
+    .preview-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      color: #dbe6ee;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
     }
 
-    .total {
-      margin-top: 15px;
+    .preview-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
       padding: 15px;
-      background: rgba(230,126,34,.18);
-      border-radius: 8px;
-      color: #ffd9b5;
+      border-radius: 9px;
+      background: rgba(230,126,34,.17);
+      color: #ffdbb8;
+      font-weight: 800;
     }
 
-
-    /* =========================
-       GENERAL
-    ========================== */
-
-    section {
-      padding: 90px 0;
-    }
+    section { padding: 76px 0; }
 
     .section-heading {
       max-width: 760px;
-      margin-bottom: 45px;
+      margin-bottom: 35px;
     }
 
     h2 {
-      font-size: clamp(40px, 6vw, 72px);
-      line-height: .98;
-      letter-spacing: -2px;
       color: var(--navy);
-      margin: 15px 0;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin: 12px 0;
     }
 
     .intro {
       color: var(--muted);
-      font-size: 18px;
-      max-width: 680px;
+      font-size: 17px;
+      max-width: 720px;
     }
 
+    .problem-section { background: white; }
 
-    /* =========================
-       PROBLEM
-    ========================== */
-
-    .problem-section {
-      background: white;
-    }
-
-    .problem-grid {
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .problem-card {
-      padding: 32px;
+    .card {
+      padding: 25px;
       border: 1px solid var(--line);
+      border-radius: 13px;
+      background: white;
+    }
+
+    .problem-section .card { background: var(--cream); }
+
+    .card-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
-      background: var(--cream);
-      min-height: 250px;
+      background: #fff0df;
+      font-size: 22px;
     }
 
-    .problem-number {
-      color: var(--orange);
-      font-weight: 900;
-      letter-spacing: 2px;
-      font-size: 13px;
-    }
-
-    .problem-card h3 {
+    .card h3 {
       color: var(--navy);
-      font-size: 27px;
-      line-height: 1.1;
-      margin: 25px 0 12px;
+      font-size: 20px;
+      line-height: 1.25;
+      margin: 17px 0 8px;
     }
 
-    .problem-card p {
+    .card p {
       color: var(--muted);
+      margin-bottom: 0;
+      font-size: 15px;
     }
 
-
-    /* =========================
-       SOLUTION
-    ========================== */
-
-    .solution-section {
-      background: var(--light, #eaf3f8);
-    }
+    .solution-section { background: #eaf3f8; }
 
     .solution-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 45px;
       align-items: center;
     }
 
-    .solution-text p {
-      font-size: 18px;
+    .solution-copy p {
       color: var(--muted);
+      font-size: 17px;
     }
 
     .feature-list {
       display: grid;
-      gap: 12px;
-      margin-top: 30px;
+      gap: 11px;
+      margin-top: 22px;
     }
 
-    .feature {
-      padding: 17px 20px;
+    .feature-item {
+      padding: 14px 17px;
       background: white;
       border-left: 4px solid var(--orange);
+      border-radius: 0 8px 8px 0;
       font-weight: 700;
       color: var(--navy);
     }
 
     .solution-box {
-      padding: 45px;
+      padding: 32px;
       border-radius: 16px;
       background: linear-gradient(145deg, var(--navy), var(--deep));
       color: white;
     }
 
     .solution-box h3 {
-      font-size: 42px;
-      line-height: 1;
-      margin-top: 20px;
+      font-size: 30px;
+      line-height: 1.2;
+      margin: 12px 0;
     }
 
-    .solution-box p {
-      color: #cbdce8;
-    }
+    .solution-box p { color: #d0dfeb; }
 
-
-    /* =========================
-       FEATURES
-    ========================== */
-
-    .features-section {
-      background: var(--cream);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
+    .features-section { background: var(--cream); }
 
     .feature-card {
-      padding: 35px;
+      padding: 24px;
       background: white;
       border: 1px solid var(--line);
       border-radius: 12px;
     }
 
-    .feature-card span {
+    .feature-card h3 {
+      margin: 10px 0 6px;
+      color: var(--navy);
+      font-size: 19px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .how-section { background: white; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .step-number {
       color: var(--orange);
+      font-size: 13px;
       font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .step h3 { color: var(--navy); }
+
+    .step p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .cta-section {
+      padding: 65px 0;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      max-width: 760px;
+      margin: 12px auto;
+    }
+
+    .cta-section p {
+      color: #d1dfeb;
+      max-width: 650px;
+      margin: 15px auto 25px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta-secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,.5);
+    }
+
+    .contact-note {
+      font-size: 12px !important;
+      color: #c5d4e1 !important;
+      margin-top: 20px !important;
+    }
+
+    footer {
+      padding: 28px 0;
+      background: var(--deep);
+      color: #cbd8e3;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    footer a { color: var(--gold); }
+
+    @media (max-width: 800px) {
+      .hero-grid,
+      .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero { padding: 60px 0; }
+
+      .card-grid,
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      section { padding: 58px 0; }
+    }
+
+    @media (max-width: 540px) {
+      .container { width: min(100% - 28px, var(--max)); }
+
+      .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 13px 0;
+        gap: 10px;
+      }
+
+      .nav-links { gap: 13px; font-size: 12px; }
+
+      .hero-grid { gap: 28px; }
+
+      h1 { letter-spacing: -1.5px; }
+
+      .hero-text { font-size: 16px; }
+
+      .hero-actions .button { width: 100%; }
+
+      .card-grid,
+      .steps { grid-template-columns: 1fr; }
+
+      .app-preview { padding: 14px; }
+
+      .solution-box { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a class="brand" href="/" aria-label="OmniFlo homepage">
+      <span class="logo-mark">O</span>
+      <span>OMNIFLO</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="#problem">The Problem</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#enquire">Get Started</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="eyebrow">A practical restaurant tool by OmniFlo</div>
+
+        <h1>Every Order Counts.<br><span>Every Sale Matters.</span></h1>
+
+        <p class="hero-text">
+          Running a restaurant is demanding enough. Resto Cashier helps you
+          record orders, calculate bills, track payment statuses and prepare
+          printable receipts in one digital workspace.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary-button"
+             href="/products/resto-cashier/demo/">
+            TRY THE DEMO →
+          </a>
+
+          <a class="button secondary-button" href="#features">
+            Explore Features
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Explore a sample restaurant workflow. No account or real payment is required for the demo.
+        </p>
+      </div>
+
+      <div class="app-preview" aria-label="Illustrative cashier screen preview">
+        <div class="app-top">
+          <strong>RESTO CASHIER</strong>
+          <span class="demo-label">SAMPLE PREVIEW</span>
+        </div>
+
+        <div class="app-panel">
+          <h3>Today's Order</h3>
+
+          <div class="preview-row">
+            <span>🍛 Ugali, Beef & Sukuma</span>
+            <strong>KSh 380</strong>
+          </div>
+
+          <div class="preview-row">
+            <span>🍗 Chicken Biryani</span>
+            <strong>KSh 550</strong>
+          </div>
+
+          <div class="preview-row">
+            <span>🧃 Fresh Passion Juice</span>
+            <strong>KSh 120</strong>
+          </div>
+
+          <div class="preview-total">
+            <span>Sample total</span>
+            <span>KSh 1,050</span>
+          </div>
+        </div>
+
+        <p style="font-size:12px;color:#cbdce8;margin:15px 0 0">
+          Illustrative order preview. Try the interactive demo to calculate your own sample bill.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="problem-section" id="problem">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow" style="color:var(--orange)">The everyday challenge</div>
+        <h2>Busy service shouldn't mean messy records.</h2>
+        <p class="intro">
+          When orders and payments are recorded manually, keeping everything
+          organized can become difficult. Resto Cashier is designed to make
+          everyday cashier tasks more manageable.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon">📝</div>
+          <h3>Scattered order records</h3>
+          <p>Keep order details in a digital workflow instead of relying only on handwritten notes.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🧮</div>
+          <h3>Repeated calculations</h3>
+          <p>Let the system calculate item totals and the bill as quantities change.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🧾</div>
+          <h3>Finding sales information</h3>
+          <p>Use the application's available sales records to help review previously recorded business activity.</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="solution-section">
+    <div class="container solution-grid">
+
+      <div class="solution-copy">
+        <div class="eyebrow" style="color:var(--orange)">A more organized workflow</div>
+        <h2>Bring your cashier tasks together.</h2>
+
+        <p>
+          Resto Cashier is built around the practical tasks that happen at
+          the counter: selecting menu items, recording an order, calculating
+          the amount due and preparing a receipt.
+        </p>
+
+        <p>
+          Whether you're exploring digital tools for a small eatery or looking
+          for a more organized cashier workflow, start by trying the demo.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">✓ Record menu items and quantities</div>
+          <div class="feature-item">✓ Calculate bills and sample tax</div>
+          <div class="feature-item">✓ Track payment statuses</div>
+          <div class="feature-item">✓ Generate printable receipts</div>
+        </div>
+      </div>
+
+      <div class="solution-box">
+        <div class="eyebrow">See it for yourself</div>
+        <h3>Don't just read about it. Try the workflow.</h3>
+        <p>
+          Add sample meals, adjust quantities and generate a demo receipt
+          before deciding whether Resto Cashier fits your needs.
+        </p>
+
+        <a class="button primary-button"
+           href="/products/resto-cashier/demo/">
+          OPEN THE FREE DEMO →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="features-section" id="features">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow" style="color:var(--orange)">Product features</div>
+        <h2>Practical tools for everyday service.</h2>
+        <p class="intro">
+          Explore the main cashier tasks supported by the application.
+          Available functionality may depend on the version supplied.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <article class="feature-card">
+          <div class="card-icon">🍽️</div>
+          <h3>Menu and pricing</h3>
+          <p>Organize menu items and prices for use when recording orders.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="card-icon">🛒</div>
+          <h3>Order recording</h3>
+          <p>Add items to an order, adjust quantities and calculate the bill.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="card-icon">💳</div>
+          <h3>Payment status tracking</h3>
+          <p>Record available payment statuses such as paid, pending or unpaid. This is not payment processing.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="card-icon">🧾</div>
+          <h3>Printable receipts</h3>
+          <p>Prepare receipts for recorded orders using the application's printing workflow.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="card-icon">📊</div>
+          <h3>Sales and expense records</h3>
+          <p>Review the sales and expense information supported by the application.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="card-icon">⚙️</div>
+          <h3>Business settings</h3>
+          <p>Configure supported restaurant details and cashier settings within the application.</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow" style="color:var(--orange)">Getting started</div>
+        <h2>Three simple steps to explore.</h2>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-number">STEP 01</div>
+          <h3>Open the demo</h3>
+          <p>Use the public demo to explore a sample restaurant order workflow.</p>
+        </article>
+
+        <article class="step">
+          <div class="step-number">STEP 02</div>
+          <h3>Build a sample order</h3>
+          <p>Add meals, change quantities and review the automatically calculated bill.</p>
+        </article>
+
+        <article class="step">
+          <div class="step-number">STEP 03</div>
+          <h3>Enquire about the product</h3>
+          <p>Contact OmniFlo to discuss the full application, access and available features.</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-section" id="enquire">
+    <div class="container">
+      <div class="eyebrow">Your next step</div>
+
+      <h2>See how Resto Cashier could fit your restaurant.</h2>
+
+      <p>
+        Start with the interactive demo. If the workflow suits your needs,
+        contact OmniFlo to enquire about the full product and purchasing options.
+      </p>
+
+      <div class="cta-actions">
+        <a class="button primary-button"
+           href="/products/resto-cashier/demo/">
+          TRY THE DEMO →
+        </a>
+
+        <!-- Replace this email if your official contact address is different. -->
+        <a class="button cta-secondary"
+           href="mailto:hello@omniflo.solutions?subject=Resto%20Cashier%20Enquiry">
+          ENQUIRE ABOUT RESTO CASHIER
+        </a>
+      </div>
+
+      <p class="contact-note">
+        The enquiry button uses hello@omniflo.solutions. Confirm that this inbox exists
+        and that you can receive messages there before publishing.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 OmniFlo. Make Technology Useful.</div>
+    <div>
+      <a href="/">OmniFlo Home</a>
+      &nbsp; · &nbsp;
+      <a href="/products/resto-cashier/demo/">Try the Demo</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

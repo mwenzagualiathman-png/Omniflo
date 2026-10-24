@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try Resto Cashier | OmniFlo</title>
+<meta name="description" content="Try the Resto Cashier restaurant POS demo by OmniFlo. Record sample orders, calculate bills and preview receipts.">
+<style>
+:root {
+  --navy: #142b4a;
+  --blue: #214c76;
+  --cream: #fffaf0;
+  --orange: #ef8b35;
+  --gold: #e6bd62;
+  --green: #217a54;
+  --red: #b94343;
+  --muted: #687386;
+  --border: #e5e8ed;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+}
+header {
+  background: var(--navy);
+  color: white;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand { font-size: 21px; font-weight: 800; }
+.brand span { color: var(--gold); }
+header a { color: white; text-decoration: none; }
+.demo-banner {
+  background: #fff0d8;
+  color: #69461c;
+  padding: 11px 5%;
+  font-size: 13px;
+  text-align: center;
+}
+.container { max-width: 1100px; margin: auto; padding: 25px 16px 45px; }
+.intro { margin-bottom: 22px; }
+.intro h1 { margin: 0 0 8px; font-size: clamp(27px, 5vw, 38px); }
+.intro p { margin: 0; color: var(--muted); line-height: 1.6; }
+.workspace {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+  align-items: start;
+}
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 18px;
+  box-shadow: 0 5px 20px rgba(20,43,74,.05);
+  min-width: 0;
+}
+.panel h2 { margin: 0 0 15px; font-size: 20px; }
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.menu-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.food-icon { font-size: 27px; }
+.food-name { font-weight: 700; line-height: 1.35; }
+.price { color: var(--green); font-weight: 800; }
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.add-btn { background: var(--navy); color: white; margin-top: auto; }
+.add-btn:hover { background: var(--blue); }
+.field { margin-bottom: 13px; }
+.field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
+input, select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #d5dbe4;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+  color: var(--navy);
+}
+.cart-empty { color: var(--muted); padding: 20px 0; text-align: center; }
+.cart-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.cart-row:last-child { border-bottom: 0; }
+.cart-name { font-weight: 700; overflow-wrap: anywhere; }
+.cart-price { color: var(--muted); font-size: 13px; margin-top: 5px; }
+.qty-controls { display: flex; align-items: center; gap: 8px; }
+.qty-controls button {
+  background: #edf1f6;
+  color: var(--navy);
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 18px;
+}
+.remove-btn { color: var(--red) !important; background: #fff0f0 !important; }
+.totals { border-top: 1px solid var(--border); margin-top: 12px; padding-top: 12px; }
+.total-row { display: flex; justify-content: space-between; gap: 10px; margin: 9px 0; }
+.grand-total { font-size: 21px; font-weight: 800; padding-top: 10px; border-top: 1px dashed #cfd5de; }
+.action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.primary-btn { background: var(--orange); color: #241809; }
+.secondary-btn { background: #edf1f6; color: var(--navy); }
+.full-btn { width: 100%; margin-top: 10px; }
+.status-note { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 12px; }
+.receipt {
+  display: none;
+  margin-top: 20px;
+  border: 1px dashed #b8c0cc;
+  border-radius: 12px;
+  padding: 18px;
+  background: #fffdf8;
+  overflow-wrap: anywhere;
+}
+.receipt h3 { text-align: center; margin: 0 0 8px; }
+.receipt p { font-size: 13px; line-height: 1.6; }
+.receipt-line { display: flex; justify-content: space-between; gap: 12px; margin: 8px 0; font-size: 13px; }
+.receipt-total { border-top: 1px dashed #aaa; padding-top: 10px; font-size: 17px; font-weight: 800; }
+footer { text-align: center; padding: 24px 12px; color: var(--muted); font-size: 13px; }
+footer a { color: var(--blue); }
+@media (max-width: 760px) {
+  .workspace { grid-template-columns: 1fr; }
+  .container { padding: 20px 12px 35px; }
+  .panel { padding: 14px; }
+}
+@media (max-width: 360px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .action-row { grid-template-columns: 1fr; }
+}
+@media print {
+  body * { visibility: hidden; }
+  #receipt, #receipt * { visibility: visible; }
+  #receipt {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+  }
+  .no-print { display: none !important; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Omni<span>Flo</span> | Resto Cashier</div>
+  <a href="../../index.html">← Back to product</a>
+</header>
+
+<div class="demo-banner">
+  INTERACTIVE DEMO · Sample data only · No real payments are processed
+</div>
+
+<main class="container">
+  <section class="intro">
+    <h1>Every Order Counts.</h1>
+    <p>Try recording a restaurant order, calculating the bill and generating a sample receipt. Add items from the menu to get started.</p>
+  </section>
+
+  <div class="workspace">
+    <section class="panel">
+      <h2>🍽️ Sample Restaurant Menu</h2>
+      <div class="menu-grid" id="menu"></div>
+    </section>
+
+    <section class="panel">
+      <h2>🧾 Current Order</h2>
+
+      <div class="field">
+        <label for="customer">Customer / Table</label>
+        <input id="customer" type="text" maxlength="60" placeholder="e.g. Table 4">
+      </div>
+
+      <div id="cart" aria-live="polite">
+        <div class="cart-empty">Your order is empty. Add an item to begin.</div>
+      </div>
+
+      <div class="totals">
+        <div class="total-row"><span>Subtotal</span><strong id="subtotal">KSh 0.00</strong></div>
+        <div class="total-row"><span>Sample tax (16%)</span><strong id="tax">KSh 0.00</strong></div>
+        <div class="total-row grand-total"><span>Total</span><strong id="total">KSh 0.00</strong></div>
+      </div>
+
+      <div class="field" style="margin-top:18px">
+        <label for="payment">Simulated payment status</label>
+        <select id="payment">
+          <option value="Paid">Paid (demo only)</option>
+          <option value="Pending">Pending</option>
+          <option value="Unpaid">Unpaid</option>
+        </select>
+      </div>
+
+      <div class="action-row">
+        <button class="primary-btn" id="receiptBtn">Generate Receipt</button>
+        <button class="secondary-btn" id="resetBtn">Reset Demo</button>
+      </div>
+
+      <p class="status-note">This is a demonstration, not a live POS account. Orders are not saved to a server. Selecting “Paid” does not charge anyone or verify a payment.</p>
+    </section>
+  </div>
+
+  <section class="receipt" id="receipt" aria-live="polite"></section>
+
+  <div class="panel no-print" style="margin-top:20px;text-align:center">
+    <h2>Ready to explore Resto Cashier?</h2>
+    <p style="color:var(--muted);line-height:1.6">This demo shows a sample order workflow. Contact OmniFlo to enquire about the full product and its available features.</p>
+    <a href="mailto:hello@omniflo.solutions?subject=Resto%20Cashier%20Enquiry" style="text-decoration:none">
+      <button class="primary-btn">Enquire About Resto Cashier</button>
+    </a>
+    <p class="status-note">The email address above is a placeholder. Replace it with your real business contact before publishing.</p>
+  </section>
+</main>
+
+<footer>
+  Resto Cashier by OmniFlo · Make Technology Useful.
+  <br><a href="../../index.html">Return to OmniFlo</a>
+</footer>
+
+<script>
+const menuItems = [
+  { id: 1, name: "Ugali, Beef & Sukuma", price: 380, icon: "🍛" },
+  { id: 2, name: "Chicken Biryani", price: 550, icon: "🍗" },
+  { id: 3, name: "Choma Sausage", price: 150, icon: "🌭" },
+  { id: 4, name: "Beef Samosa", price: 180, icon: "🥟" },
+  { id: 5, name: "Fresh Passion Juice", price: 120, icon: "🧃" },
+  { id: 6, name: "Cold Mango Smoothie", price: 160, icon: "🥭" }
+];
+
+const cart = {};
+const TAX_RATE = 0.16;
+const money = amount => "KSh " + amount.toLocaleString("en-KE", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+
+function renderMenu() {
+  const menu = document.getElementById("menu");
+  menu.innerHTML = "";
+
+  menuItems.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "menu-item";
+
+    const icon = document.createElement("div");
+    icon.className = "food-icon";
+    icon.textContent = item.icon;
+
+    const name = document.createElement("div");
+    name.className = "food-name";
+    name.textContent = item.name;
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = money(item.price);
+
+    const button = document.createElement("button");
+    button.className = "add-btn";
+    button.textContent = "+ Add to Order";
+    button.addEventListener("click", () => addItem(item.id));
+
+    card.append(icon, name, price, button);
+    menu.appendChild(card);
+  });
+}
+
+function addItem(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+}
+
+function changeQuantity(id, amount) {
+  cart[id] = (cart[id] || 0) + amount;
+  if (cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+
+function removeItem(id) {
+  delete cart[id];
+  renderCart();
+}
+
+function calculateTotals() {
+  const subtotal = menuItems.reduce((sum, item) =>
+    sum + item.price * (cart[item.id] || 0), 0);
+  const tax = subtotal * TAX_RATE;
+  return { subtotal, tax, total: subtotal + tax };
+}
+
+function renderCart() {
+  const cartEl = document.getElementById("cart");
+  cartEl.innerHTML = "";
+
+  const chosen = menuItems.filter(item => cart[item.id]);
+
+  if (!chosen.length) {
+    const empty = document.createElement("div");
+    empty.className = "cart-empty";
+    empty.textContent = "Your order is empty. Add an item to begin.";
+    cartEl.appendChild(empty);
+  } else {
+    chosen.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "cart-row";
+
+      const details = document.createElement("div");
+      const name = document.createElement("div");
+      name.className = "cart-name";
+      name.textContent = item.name;
+
+      const price = document.createElement("div");
+      price.className = "cart-price";
+      price.textContent = money(item.price) + " each · " + money(item.price * cart[item.id]);
+
+      details.append(name, price);
+
+      const controls = document.createElement("div");
+      controls.className = "qty-controls";
+
+      const minus = document.createElement("button");
+      minus.textContent = "−";
+      minus.setAttribute("aria-label", "Decrease " + item.name);
+      minus.addEventListener("click", () => changeQuantity(item.id, -1));
+
+      const quantity = document.createElement("strong");
+      quantity.textContent = cart[item.id];
+
+      const plus = document.createElement("button");
+      plus.textContent = "+";
+      plus.setAttribute("aria-label", "Increase " + item.name);
+      plus.addEventListener("click", () => changeQuantity(item.id, 1));
+
+      const remove = document.createElement("button");
+      remove.textContent = "×";
+      remove.className = "remove-btn";
+      remove.setAttribute("aria-label", "Remove " + item.name);
+      remove.addEventListener("click", () => removeItem(item.id));
+
+      controls.append(minus, quantity, plus, remove);
+      row.append(details, controls);
+      cartEl.appendChild(row);
+    });
+  }
+
+  updateTotals();
+}
+
+function updateTotals() {
+  const totals = calculateTotals();
+  document.getElementById("subtotal").textContent = money(totals.subtotal);
+  document.getElementById("tax").textContent = money(totals.tax);
+  document.getElementById("total").textContent = money(totals.total);
+}
+
+function generateReceipt() {
+  const chosen = menuItems.filter(item => cart[item.id]);
+
+  if (!chosen.length) {
+    alert("Please add at least one menu item before generating a receipt.");
+    return;
+  }
+
+  const totals = calculateTotals();
+  const receipt = document.getElementById("receipt");
+  receipt.innerHTML = "";
+
+  const heading = document.createElement("h3");
+  heading.textContent = "SAMPLE RESTAURANT";
+
+  const subtitle = document.createElement("p");
+  subtitle.style.textAlign = "center";
+  subtitle.textContent = "Resto Cashier · DEMO RECEIPT";
+
+  const customer = document.createElement("p");
+  const customerName = document.getElementById("customer").value.trim();
+  customer.textContent = "Customer / Table: " + (customerName || "Walk-in");
+
+  const time = document.createElement("p");
+  time.textContent = "Demo time: " + new Date().toLocaleString();
+
+  receipt.append(heading, subtitle, customer, time);
+
+  chosen.forEach(item => {
+    const line = document.createElement("div");
+    line.className = "receipt-line";
+
+    const description = document.createElement("span");
+    description.textContent = item.name + " × " + cart[item.id];
+
+    const amount = document.createElement("strong");
+    amount.textContent = money(item.price * cart[item.id]);
+
+    line.append(description, amount);
+    receipt.appendChild(line);
+  });
+
+  const divider = document.createElement("hr");
+  receipt.appendChild(divider);
+
+  [
+    ["Subtotal", totals.subtotal],
+    ["Sample tax (16%)", totals.tax]
+  ].forEach(([label, amount]) => {
+    const line = document.createElement("div");
+    line.className = "receipt-line";
+    const left = document.createElement("span");
+    left.textContent = label;
+    const right = document.createElement("span");
+    right.textContent = money(amount);
+    line.append(left, right);
+    receipt.appendChild(line);
+  });
+
+  const total = document.createElement("div");
+  total.className = "receipt-line receipt-total";
+  const totalLabel = document.createElement("span");
+  totalLabel.textContent = "TOTAL";
+  const totalAmount = document.createElement("span");
+  totalAmount.textContent = money(totals.total);
+  total.append(totalLabel, totalAmount);
+  receipt.appendChild(total);
+
+  const status = document.createElement("p");
+  status.style.fontWeight = "bold";
+  status.textContent = "Demo payment status: " + document.getElementById("payment").value;
+
+  const disclaimer = document.createElement("p");
+  disclaimer.style.textAlign = "center";
+  disclaimer.textContent = "SAMPLE ONLY — NOT PROOF OF PAYMENT";
+
+  receipt.append(status, disclaimer);
+
+  const printButton = document.createElement("button");
+  printButton.className = "secondary-btn no-print";
+  printButton.textContent = "Print Sample Receipt";
+  printButton.style.width = "100%";
+  printButton.style.marginTop = "12px";
+  printButton.addEventListener("click", () => window.print());
+  receipt.appendChild(printButton);
+
+  receipt.style.display = "block";
+  receipt.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function resetDemo() {
+  Object.keys(cart).forEach(id => delete cart[id]);
+  document.getElementById("customer").value = "";
+  document.getElementById("payment").value = "Paid";
+  document.getElementById("receipt").style.display = "none";
+  document.getElementById("receipt").innerHTML = "";
+  renderCart();
+}
+
+document.getElementById("receiptBtn").addEventListener("click", generateReceipt);
+document.getElementById("resetBtn").addEventListener("click", resetDemo);
+
+renderMenu();
+renderCart();
+</script>
+</body>
+</html>

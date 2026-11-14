@@ -1,3 +1,4 @@
+
 {
   "name": "omniflo",
   "version": "1.0.0",
@@ -6,6 +7,7 @@
     "build": "node scripts/build-content.js && node scripts/build-sitemap.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
     "gray-matter": "^4.0.3",
     "marked": "^16.1.2"
   }
